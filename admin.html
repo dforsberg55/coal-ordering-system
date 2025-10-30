@@ -1070,11 +1070,6 @@
                         ` : ''}
                         <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
                             ✏️ Edit Order
-                        </button>                        <button class="btn btn-edit" onclick="updatePaymentStatus('${order.id}', 'confirmed')" style="background: #27ae60;">
-                            💳 Confirm Payment
-                        </button>
-                        <button class="btn btn-edit" onclick="updatePaymentStatus('${order.id}', 'refunded')" style="background: #e74c3c;">
-                            💰 Process Refund
                         </button>
                         <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
                             🗑️ Delete
@@ -1193,11 +1188,6 @@
                         ` : ''}
                         <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
                             ✏️ Edit Order
-                        </button>                        <button class="btn btn-edit" onclick="updatePaymentStatus('${order.id}', 'confirmed')" style="background: #27ae60;">
-                            💳 Confirm Payment
-                        </button>
-                        <button class="btn btn-edit" onclick="updatePaymentStatus('${order.id}', 'refunded')" style="background: #e74c3c;">
-                            💰 Process Refund
                         </button>
                         <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
                             🗑️ Delete
@@ -1207,26 +1197,6 @@
             `).join('');
         }
 
-        async function updatePaymentStatus(orderId, newPaymentStatus) {
-            const orderIndex = orders.findIndex(order => order.id === orderId);
-            if (orderIndex !== -1) {
-                orders[orderIndex].paymentStatus = newPaymentStatus;
-                orders[orderIndex].lastUpdated = Date.now();
-                
-                // Save through CloudSync
-                const cloudData = await window.CloudSync.loadData();
-                cloudData.orders = orders;
-                await window.CloudSync.saveData(cloudData);
-                
-                updateStats();
-                loadOrders();
-                
-                // Show confirmation
-                alert(`Payment status for Order #${orderId} updated to ${newPaymentStatus}!`);
-            }
-        }
-
-        
         async function updatePaymentStatus(orderId, newPaymentStatus) {
             const orderIndex = orders.findIndex(order => order.id === orderId);
             if (orderIndex !== -1) {
@@ -1442,14 +1412,22 @@
             }
         });
 
-        function deleteOrder(orderId) {
+        async function deleteOrder(orderId) {
             if (confirm(`Are you sure you want to delete Order #${orderId}? This action cannot be undone.`)) {
+                // Remove from local orders array
                 orders = orders.filter(order => order.id !== orderId);
+                
+                // Save to cloud database
+                const cloudData = await window.CloudSync.loadData();
+                cloudData.orders = orders;
+                await window.CloudSync.saveData(cloudData);
+                
+                // Update local storage as backup
                 localStorage.setItem('adminOrders', JSON.stringify(orders));
                 
                 updateStats();
                 loadOrders();
-                alert(`Order #${orderId} has been deleted`);
+                alert(`Order #${orderId} has been permanently deleted`);
             }
         }
         // Removed old localStorage-based auto-refresh (replaced by cloud sync below)
