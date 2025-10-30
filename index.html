@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Coal Ordering System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .role-selection h3 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .portals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .portal-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .portal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .portal-card.admin {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+        }
+        .portal-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .portal-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .portal-description {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        .features h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            color: #2c3e50;
+        }
+        .feature-item::before {
+            content: "✅";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔥 Coal Ordering System</h1>
+            <p>Complete order management solution for coal distribution</p>
+        </div>
+
+        <div class="role-selection">
+            <h3>Select Your Role</h3>
+            <div class="portals">
+                <button onclick="setRole('customer')" class="portal-card">
+                    <div class="portal-icon">👥</div>
+                    <div class="portal-title">I'm a Customer</div>
+                    <div class="portal-description">
+                        I want to place orders and track deliveries
+                    </div>
+                </button>
+
+                <button onclick="setRole('admin')" class="portal-card admin">
+                    <div class="portal-icon">⚙️</div>
+                    <div class="portal-title">I'm an Admin</div>
+                    <div class="portal-description">
+                        I manage orders and approve requests
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3>System Features</h3>
+            <div class="feature-list">
+                <div class="feature-item">Real-time order tracking</div>
+                <div class="feature-item">Automated approval workflow</div>
+                <div class="feature-item">Customer notifications</div>
+                <div class="feature-item">Admin dashboard</div>
+                <div class="feature-item">Order history</div>
+                <div class="feature-item">Status updates</div>
+                <div class="feature-item">Multi-product catalog</div>
+                <div class="feature-item">Province-based delivery</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setRole(role) {
+            localStorage.setItem('userRole', role);
+            if (role === 'customer') {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'admin.html';
+            }
+        }
+    </script>
+</body>
+</html>

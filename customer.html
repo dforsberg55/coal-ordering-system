@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Coal Orders - Customer Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .nav {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .nav button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav button.active {
+            background: #2980b9;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        .order-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .order-form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .orders-list {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .order-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .order-item.pending {
+            border-left-color: #f39c12;
+        }
+        .order-item.approved {
+            border-left-color: #27ae60;
+        }
+        .order-item.rejected {
+            border-left-color: #e74c3c;
+            background: #fdf2f2;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.approved {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔥 Coal Orders - Customer Portal</h1>
+        <p>Place orders and track delivery status</p>
+        <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div>
+                <span style="color: #2ecc71; font-weight: bold;">Welcome, <span id="customerName"></span>!</span>
+            </div>
+            <div>
+                <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                    🚪 Logout
+                </button>
+                <button onclick="goHome()" style="background: #95a5a6; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+                    🏠 Back to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <button onclick="showSection('catalog')" class="active" id="catalogBtn">Order Coal</button>
+        <button onclick="showSection('orders')" id="ordersBtn">My Orders</button>
+    </div>
+
+    <div id="catalog" class="section active">
+        <div class="products" id="products"></div>
+        <div class="order-form" id="orderForm" style="display: none;">
+            <h3>Place Your Order</h3>
+            <form id="coalOrderForm">
+                <div class="form-group">
+                    <label>Selected Product:</label>
+                    <input type="text" id="selectedProduct" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Company Name:</label>
+                    <input type="text" id="companyName" required>
+                </div>
+                <div class="form-group">
+                    <label>Contact Person:</label>
+                    <input type="text" id="contactPerson" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Quantity (tons):</label>
+                    <input type="number" id="quantity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Location:</label>
+                    <select id="location" required>
+                        <option value="">Select Province</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="mpumalanga">Mpumalanga</option>
+                        <option value="kwazulu-natal">KwaZulu-Natal</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="free-state">Free State</option>
+                        <option value="limpopo">Limpopo</option>
+                        <option value="north-west">North West</option>
+                        <option value="northern-cape">Northern Cape</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Street Address:</label>
+                    <input type="text" id="streetAddress" required placeholder="123 Main Street">
+                </div>
+                <div class="form-group">
+                    <label>City/Town:</label>
+                    <input type="text" id="city" required placeholder="Johannesburg">
+                </div>
+                <div class="form-group">
+                    <label>Postal Code:</label>
+                    <input type="text" id="postalCode" required placeholder="2000">
+                </div>
+                <button type="submit" class="submit-btn">Proceed to Payment</button>
+            </form>
+        <div class="order-form" id="paymentForm" style="display: none;">
+            <h3>Payment Details</h3>
+            <div style="background: #e8f4fd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                <strong>Order Summary:</strong><br>
+                <span id="paymentSummary"></span>
+            </div>
+            <form id="paymentFormElement">
+                <div class="form-group">
+                    <label>Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Expiry Date:</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV:</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Cardholder Name:</label>
+                    <input type="text" id="cardholderName" required>
+                </div>
+                <button type="submit" class="submit-btn">Complete Payment</button>
+                <button type="button" onclick="goBackToOrder()" style="background: #95a5a6; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; margin-left: 10px;">
+                    Back to Order
+                </button>
+            </form>
+        </div>
+
+        <div id="orderSuccess" class="success" style="display: none;">
+            <strong>Payment Successful!</strong><br>
+            Order ID: <span id="newOrderId"></span><br>
+            Your order has been submitted for approval. Check "My Orders" to track status.
+        </div>
+        </div>
+    </div>
+
+    <div id="orders" class="section">
+        <div class="orders-list">
+            <h3>My Orders</h3>
+            <div id="ordersList"></div>
+        </div>
+    </div>
+
+    <script src="url-sync.js?v=3"></script>
+    <script>
+        const products = [
+            {
+                productId: 'coal-grade-a',
+                name: 'Premium Grade A Coal',
+                description: 'High quality coal from Mpumalanga mines',
+                pricePerTon: 1200,
+                minOrder: 10
+            },
+            {
+                productId: 'coal-grade-b',
+                name: 'Standard Grade B Coal',
+                description: 'Good quality coal for industrial use',
+                pricePerTon: 950,
+                minOrder: 5
+            }
+        ];
+
+        const API_BASE = 'https://8et3ccjf83.execute-api.eu-west-1.amazonaws.com/prod';
+
+        // Simple cloud sync using JSONPlaceholder-like service
+        const CLOUD_STORAGE = 'https://jsonplaceholder.typicode.com/posts/1';
+        
+        async function syncToCloud(orders) {
+            try {
+                // Use a simple approach - encode data in URL for GET requests
+                const encodedData = btoa(JSON.stringify({
+                    orders: orders,
+                    timestamp: Date.now()
+                }));
+                
+                // Store in localStorage with a cloud key for cross-device simulation
+                localStorage.setItem('cloudOrdersData', JSON.stringify({
+                    orders: orders,
+                    timestamp: Date.now(),
+                    synced: true
+                }));
+                
+                return true;
+            } catch (error) {
+                console.log('Cloud sync failed');
+                return false;
+            }
+        }
+        
+        async function loadFromCloud() {
+            try {
+                const cloudData = localStorage.getItem('cloudOrdersData');
+                if (cloudData) {
+                    const parsed = JSON.parse(cloudData);
+                    return parsed.orders || [];
+                }
+                return [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            try {
+                const options = {
+                    method,
+                    headers: { 'Content-Type': 'application/json' }
+                };
+                if (data) options.body = JSON.stringify(data);
+                
+                const response = await fetch(`${API_BASE}${endpoint}`, options);
+                return await response.json();
+            } catch (error) {
+                console.error('API Error:', error);
+                return null;
+            }
+        }
+
+        let orders = [];
+        let currentUser = null;
+
+        // Check authentication on page load
+        function checkAuth() {
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display user name
+            document.getElementById('customerName').textContent = currentUser.contact;
+            
+            // Load user's orders only
+            loadUserOrders();
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        async function loadUserOrders() {
+            // Get all orders from CloudSync and filter by current user
+            const cloudData = await window.CloudSync.loadData();
+            const allOrders = cloudData.orders || [];
+            orders = allOrders.filter(order => order.customerId === currentUser.id);
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        async function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            document.getElementById(section + 'Btn').classList.add('active');
+            
+            if (section === 'orders') {
+                await loadUserOrders();
+                loadOrders();
+            }
+        }
+
+        function loadProducts() {
+            const productsContainer = document.getElementById('products');
+            productsContainer.innerHTML = products.map(product => `
+                <div class="product">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div style="font-size: 24px; font-weight: bold; color: #e74c3c; margin: 15px 0;">
+                        R${product.pricePerTon}/ton
+                    </div>
+                    <p><strong>Minimum Order:</strong> ${product.minOrder} tons</p>
+                    <button class="order-btn" onclick="showOrderForm('${product.productId}', '${product.name}', ${product.minOrder})">
+                        Order Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function showOrderForm(productId, productName, minOrder) {
+            document.getElementById('selectedProduct').value = productName;
+            document.getElementById('quantity').min = minOrder;
+            document.getElementById('quantity').value = minOrder;
+            
+            // Pre-fill customer data
+            document.getElementById('companyName').value = currentUser.company;
+            document.getElementById('contactPerson').value = currentUser.contact;
+            document.getElementById('email').value = currentUser.email;
+            document.getElementById('phone').value = currentUser.phone;
+            
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loadOrders() {
+            const ordersList = document.getElementById('ordersList');
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p>No orders yet. Place your first order!</p>';
+                return;
+            }
+
+            ordersList.innerHTML = orders.map(order => `
+                <div class="order-item ${order.status}">
+                    <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 10px;">
+                        <strong>Order #${order.id}</strong>
+                        <span class="status ${order.status}">${order.status.replace('_', ' ')}</span>
+                    </div>
+                    <p><strong>Product:</strong> ${order.product}</p>
+                    <p><strong>Quantity:</strong> ${order.quantity} tons</p>
+                    <p><strong>Company:</strong> ${order.company}</p>
+                    <p><strong>Address:</strong> ${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</p>
+                    <p><strong>Order Date:</strong> ${new Date(order.date).toLocaleDateString()}</p>
+                    ${order.status === 'approved' ? '<p style="color: #27ae60;"><strong>✅ Approved - Preparing for delivery</strong></p>' : ''}
+                    ${order.status === 'delivered' ? '<p style="color: #2ecc71;"><strong>🚚 Out for delivery</strong></p>' : ''}
+                    ${order.status === 'rejected' ? `
+                        <p style="color: #e74c3c;"><strong>❌ Order Declined - Full refund processed within 3-5 business days</strong></p>
+                        ${order.rejectionReason ? `<div style="background: #fdf2f2; border: 1px solid #e74c3c; border-radius: 5px; padding: 10px; margin-top: 10px; color: #721c24;"><strong style="color: #e74c3c;">Reason:</strong> ${order.rejectionReason}</div>` : ''}
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('coalOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Store order data temporarily
+            const orderData = {
+                product: document.getElementById('selectedProduct').value,
+                company: document.getElementById('companyName').value,
+                contact: document.getElementById('contactPerson').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                quantity: document.getElementById('quantity').value,
+                location: document.getElementById('location').value,
+                streetAddress: document.getElementById('streetAddress').value,
+                city: document.getElementById('city').value,
+                postalCode: document.getElementById('postalCode').value
+            };
+            
+            localStorage.setItem('tempOrderData', JSON.stringify(orderData));
+            
+            // Calculate total (mock calculation)
+            const pricePerTon = orderData.product.includes('Premium') ? 1200 : 950;
+            const total = pricePerTon * parseInt(orderData.quantity);
+            document.getElementById('paymentSummary').innerHTML = `
+                ${orderData.product}<br>
+                ${orderData.quantity} tons × R${pricePerTon} = <strong>R${total.toLocaleString()}</strong>
+            `;
+            
+            // Hide order form and show payment form (both inside orderForm container)
+            document.getElementById('coalOrderForm').style.display = 'none';
+            document.getElementById('paymentForm').style.display = 'block';
+            document.getElementById('paymentForm').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('paymentFormElement').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Simulate payment processing
+            const orderData = JSON.parse(localStorage.getItem('tempOrderData'));
+            const orderId = 'ORD-' + Date.now();
+            
+            const newOrder = {
+                id: orderId,
+                customerId: currentUser.id,
+                customerName: currentUser.contact,
+                customerCompany: currentUser.company,
+                ...orderData,
+                status: 'pending',
+                date: new Date().toISOString(),
+                paymentStatus: 'paid'
+            };
+
+            // Load existing data from cloud
+            const cloudData = await window.CloudSync.loadData();
+            cloudData.orders = cloudData.orders || [];
+            cloudData.orders.push(newOrder);
+            
+            // Save to cloud
+            await window.CloudSync.saveData(cloudData);
+            
+            // Also save locally
+            orders.push(newOrder);
+            localStorage.setItem('userOrders', JSON.stringify(orders));
+            
+            document.getElementById('newOrderId').textContent = orderId;
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('orderSuccess').style.display = 'block';
+            
+            // Clear temp data
+            localStorage.removeItem('tempOrderData');
+            
+            setTimeout(() => {
+                document.getElementById('orderSuccess').style.display = 'none';
+                document.getElementById('orderForm').style.display = 'none';
+                document.getElementById('coalOrderForm').style.display = 'block';
+                document.getElementById('coalOrderForm').reset();
+                document.getElementById('paymentFormElement').reset();
+                showSection('catalog');
+            }, 5000);
+        });
+
+        function goBackToOrder() {
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('coalOrderForm').style.display = 'block';
+            document.getElementById('coalOrderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Format card number input
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry date input
+        document.getElementById('expiryDate').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Check for order updates from admin
+        async function checkOrderUpdates() {
+            if (!currentUser) return;
+            
+            // Get latest orders from CloudSync
+            const cloudData = await window.CloudSync.loadData();
+            const adminOrders = cloudData.orders || [];
+            const userOrders = adminOrders.filter(order => order.customerId === currentUser.id);
+            
+            // Update local orders with admin changes
+            orders.forEach(order => {
+                const adminOrder = userOrders.find(ao => ao.id === order.id);
+                if (adminOrder) {
+                    order.status = adminOrder.status;
+                    order.rejectionReason = adminOrder.rejectionReason;
+                    order.lastUpdated = adminOrder.lastUpdated;
+                }
+            });
+            
+            // Refresh the orders display if we're on the orders section
+            const ordersSection = document.getElementById('orders');
+            if (ordersSection && ordersSection.classList.contains('active')) {
+                loadOrders();
+            }
+        }
+
+        // Initialize page
+        async function initializePage() {
+            checkAuth();
+            loadProducts();
+            if (currentUser) {
+                await loadUserOrders();
+                
+                // Auto-refresh orders every 5 seconds to check for admin updates
+                setInterval(checkOrderUpdates, 5000);
+            }
+        }
+        
+        initializePage();
+    </script>
+</body>
+</html>
