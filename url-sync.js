@@ -71,9 +71,20 @@ class CloudSync {
                     console.log('📦 Upstash raw result:', result);
                     
                     // Upstash returns {result: yourData} format
-                    const cloudData = result.result;
+                    let cloudData = result.result;
                     
-                    if (cloudData && typeof cloudData === 'object') {
+                    // If result is a string, parse it as JSON
+                    if (typeof cloudData === 'string') {
+                        try {
+                            cloudData = JSON.parse(cloudData);
+                            console.log('🔄 Parsed string data from Redis');
+                        } catch (parseError) {
+                            console.log('❌ Failed to parse Redis string data:', parseError);
+                            cloudData = null;
+                        }
+                    }
+                    
+                    if (cloudData && typeof cloudData === 'object' && (cloudData.users || cloudData.orders)) {
                         // Update localStorage with cloud data
                         localStorage.setItem(this.storageKey, JSON.stringify(cloudData));
                         console.log('☁️ Data loaded from Upstash Redis - globally synced');
@@ -118,7 +129,17 @@ class CloudSync {
             
             if (response.ok) {
                 const result = await response.json();
-                const cloudData = result.result;
+                let cloudData = result.result;
+                
+                // If result is a string, parse it as JSON
+                if (typeof cloudData === 'string') {
+                    try {
+                        cloudData = JSON.parse(cloudData);
+                    } catch (parseError) {
+                        console.log('❌ Failed to parse Redis string data:', parseError);
+                        return null;
+                    }
+                }
                 
                 if (cloudData && (cloudData.users || cloudData.orders)) {
                     localStorage.setItem(this.storageKey, JSON.stringify(cloudData));
@@ -170,7 +191,17 @@ class CloudSync {
             if (response.ok) {
                 const result = await response.json();
                 console.log('📦 Raw Redis result:', result);
-                console.log('📊 Parsed data:', result.result);
+                
+                let parsedData = result.result;
+                if (typeof parsedData === 'string') {
+                    try {
+                        parsedData = JSON.parse(parsedData);
+                    } catch (e) {
+                        console.log('❌ Could not parse data');
+                    }
+                }
+                
+                console.log('📊 Parsed data:', parsedData);
                 return result;
             } else {
                 console.log('❌ Redis debug failed:', response.status);
