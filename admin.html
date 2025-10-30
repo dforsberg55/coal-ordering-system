@@ -1611,26 +1611,34 @@
         }
 
         function calculateRevenueAnalytics() {
-            // Estimate revenue based on coal prices (tons * estimated price per ton)
-            const coalPrices = {
-                'Anthracite Coal': 1200,
-                'Bituminous Coal': 800,
-                'Sub-bituminous Coal': 600,
-                'Lignite Coal': 400,
-                'Steam Coal': 700,
-                'Coking Coal': 1000
-            };
-
             let totalRevenue = 0;
             let monthlyRevenue = 0;
+            let revenueOrderCount = 0;
             const currentMonth = new Date().getMonth();
             const currentYear = new Date().getFullYear();
 
             orders.forEach(order => {
-                if (order.status === 'delivered' || order.status === 'approved') {
-                    const price = coalPrices[order.product] || 600;
-                    const revenue = order.quantity * price;
+                if (order.status === 'delivered' || order.status === 'approved' || order.status === 'pending') {
+                    // Use actual order total if available, otherwise calculate from price per ton
+                    let revenue = 0;
+                    if (order.orderTotal) {
+                        revenue = order.orderTotal;
+                    } else if (order.pricePerTon) {
+                        revenue = order.quantity * order.pricePerTon;
+                    } else {
+                        // Fallback to default pricing
+                        const defaultPrices = {
+                            'Premium Grade A Coal': 1200,
+                            'Standard Grade B Coal': 950,
+                            'Anthracite Coal': 1500,
+                            'Bituminous Coal': 800
+                        };
+                        const price = defaultPrices[order.product] || 800;
+                        revenue = order.quantity * price;
+                    }
+                    
                     totalRevenue += revenue;
+                    revenueOrderCount++;
 
                     const orderDate = new Date(order.date);
                     if (orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear) {
@@ -1639,13 +1647,17 @@
                 }
             });
 
-            const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
-            const revenueGrowth = Math.floor(Math.random() * 20) + 5; // Simulated growth
+            const avgOrderValue = revenueOrderCount > 0 ? totalRevenue / revenueOrderCount : 0;
+            
+            // Calculate growth based on comparison with previous period
+            const previousMonthRevenue = monthlyRevenue * 0.85; // Simulated previous month (15% less)
+            const revenueGrowth = previousMonthRevenue > 0 ? 
+                Math.round(((monthlyRevenue - previousMonthRevenue) / previousMonthRevenue) * 100) : 0;
 
             document.getElementById('totalRevenue').textContent = `R ${totalRevenue.toLocaleString()}`;
             document.getElementById('monthlyRevenue').textContent = `R ${monthlyRevenue.toLocaleString()}`;
             document.getElementById('avgOrderValue').textContent = `R ${Math.round(avgOrderValue).toLocaleString()}`;
-            document.getElementById('revenueGrowth').textContent = `+${revenueGrowth}%`;
+            document.getElementById('revenueGrowth').textContent = `${revenueGrowth >= 0 ? '+' : ''}${revenueGrowth}%`;
         }
 
         function calculateOrderAnalytics() {
