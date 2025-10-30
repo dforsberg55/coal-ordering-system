@@ -1,10 +1,11 @@
-// Simple global cloud sync - everyone shares the same data
+// Real cloud sync using Upstash Redis - everyone shares the same data
 class CloudSync {
     constructor() {
         this.storageKey = 'coalDemoData';
-        // Use a fixed cloud storage endpoint that everyone shares
-        this.cloudEndpoint = 'https://api.jsonstorage.net/v1/json/coal-ordering-demo/data';
-        this.backupEndpoint = 'https://httpbin.org/anything'; // Fallback for testing
+        // Upstash Redis REST API endpoints
+        this.restUrl = 'https://keen-anchovy-31443.upstash.io';
+        this.restToken = 'AXrTAAIncDIyOGFlOGU4YTZkYmE0OTQ0YmUxYmJiOGIwZDNhMjYyN3AyMzE0NDM';
+        this.dataKey = 'coal-app-data'; // Key to store all app data in Redis
     }
 
     async saveData(data) {
@@ -15,46 +16,27 @@ class CloudSync {
             // Add timestamp for tracking
             data.lastUpdated = Date.now();
             
-            // Try to save to cloud storage
+            // Save to Upstash Redis
             try {
-                const response = await fetch(this.cloudEndpoint, {
+                const response = await fetch(`${this.restUrl}/set/${this.dataKey}`, {
                     method: 'POST',
                     headers: {
+                        'Authorization': `Bearer ${this.restToken}`,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
-                    console.log('✅ Data saved to cloud and synced globally');
+                    console.log('✅ Data saved to Upstash Redis - globally synced');
                     return true;
                 } else {
-                    throw new Error('Cloud save failed');
+                    const errorText = await response.text();
+                    console.log('⚠️ Upstash save failed:', errorText);
+                    throw new Error('Upstash save failed');
                 }
             } catch (cloudError) {
-                console.log('⚠️ Cloud save failed, trying backup method...');
-                
-                // Try backup method using a simple HTTP service
-                try {
-                    const backupResponse = await fetch('https://httpbin.org/post', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            coalData: data,
-                            timestamp: Date.now()
-                        })
-                    });
-                    
-                    if (backupResponse.ok) {
-                        console.log('✅ Data saved to backup cloud service');
-                        return true;
-                    }
-                } catch (backupError) {
-                    console.log('⚠️ Backup cloud save also failed');
-                }
-                
+                console.log('⚠️ Cloud save failed:', cloudError);
                 console.log('💾 Data saved locally only - will sync when connection improves');
                 return true; // Still return true since local save worked
             }
@@ -66,26 +48,29 @@ class CloudSync {
 
     async loadData() {
         try {
-            // Try to load from cloud first
+            // Try to load from Upstash Redis first
             try {
-                const response = await fetch(this.cloudEndpoint, {
+                const response = await fetch(`${this.restUrl}/get/${this.dataKey}`, {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${this.restToken}`,
                     }
                 });
                 
                 if (response.ok) {
-                    const cloudData = await response.json();
+                    const result = await response.json();
+                    // Upstash returns {result: yourData} format
+                    const cloudData = result.result;
+                    
                     if (cloudData && (cloudData.users || cloudData.orders)) {
                         // Update localStorage with cloud data
                         localStorage.setItem(this.storageKey, JSON.stringify(cloudData));
-                        console.log('☁️ Data loaded from cloud - globally synced');
+                        console.log('☁️ Data loaded from Upstash Redis - globally synced');
                         return cloudData;
                     }
                 }
             } catch (cloudError) {
-                console.log('⚠️ Cloud load failed, using local data');
+                console.log('⚠️ Cloud load failed, using local data:', cloudError);
             }
             
             // Fallback to localStorage
@@ -106,18 +91,20 @@ class CloudSync {
     // Force sync from cloud (useful for manual refresh)
     async syncFromCloud() {
         try {
-            const response = await fetch(this.cloudEndpoint, {
+            const response = await fetch(`${this.restUrl}/get/${this.dataKey}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.restToken}`,
                 }
             });
             
             if (response.ok) {
-                const cloudData = await response.json();
+                const result = await response.json();
+                const cloudData = result.result;
+                
                 if (cloudData && (cloudData.users || cloudData.orders)) {
                     localStorage.setItem(this.storageKey, JSON.stringify(cloudData));
-                    console.log('🔄 Manual sync completed');
+                    console.log('🔄 Manual sync completed from Upstash Redis');
                     return cloudData;
                 }
             }
@@ -125,6 +112,29 @@ class CloudSync {
         } catch (error) {
             console.log('❌ Manual sync failed:', error);
             return null;
+        }
+    }
+
+    // Test connection to Upstash
+    async testConnection() {
+        try {
+            const response = await fetch(`${this.restUrl}/ping`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${this.restToken}`,
+                }
+            });
+            
+            if (response.ok) {
+                console.log('✅ Upstash Redis connection successful');
+                return true;
+            } else {
+                console.log('❌ Upstash Redis connection failed');
+                return false;
+            }
+        } catch (error) {
+            console.log('❌ Upstash Redis connection error:', error);
+            return false;
         }
     }
 }
