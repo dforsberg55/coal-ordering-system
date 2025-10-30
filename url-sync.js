@@ -16,6 +16,8 @@ class CloudSync {
             // Add timestamp for tracking
             data.lastUpdated = Date.now();
             
+            console.log('💾 Saving data to Upstash Redis:', data);
+            
             // Save to Upstash Redis
             try {
                 const response = await fetch(`${this.restUrl}/set/${this.dataKey}`, {
@@ -27,12 +29,16 @@ class CloudSync {
                     body: JSON.stringify(data)
                 });
                 
+                console.log('📡 Upstash save response status:', response.status);
+                
                 if (response.ok) {
+                    const result = await response.json();
                     console.log('✅ Data saved to Upstash Redis - globally synced');
+                    console.log('📦 Save result:', result);
                     return true;
                 } else {
                     const errorText = await response.text();
-                    console.log('⚠️ Upstash save failed:', errorText);
+                    console.log('⚠️ Upstash save failed:', response.status, errorText);
                     throw new Error('Upstash save failed');
                 }
             } catch (cloudError) {
@@ -50,6 +56,7 @@ class CloudSync {
         try {
             // Try to load from Upstash Redis first
             try {
+                console.log('🔍 Attempting to load from Upstash Redis...');
                 const response = await fetch(`${this.restUrl}/get/${this.dataKey}`, {
                     method: 'GET',
                     headers: {
@@ -57,20 +64,31 @@ class CloudSync {
                     }
                 });
                 
+                console.log('📡 Upstash response status:', response.status);
+                
                 if (response.ok) {
                     const result = await response.json();
+                    console.log('📦 Upstash raw result:', result);
+                    
                     // Upstash returns {result: yourData} format
                     const cloudData = result.result;
                     
-                    if (cloudData && (cloudData.users || cloudData.orders)) {
+                    if (cloudData && typeof cloudData === 'object') {
                         // Update localStorage with cloud data
                         localStorage.setItem(this.storageKey, JSON.stringify(cloudData));
                         console.log('☁️ Data loaded from Upstash Redis - globally synced');
+                        console.log('📊 Cloud data:', cloudData);
                         return cloudData;
+                    } else if (cloudData === null) {
+                        console.log('🆕 No data in Redis yet, starting fresh');
+                        return { users: [], orders: [] };
                     }
+                } else {
+                    const errorText = await response.text();
+                    console.log('⚠️ Upstash load failed:', response.status, errorText);
                 }
             } catch (cloudError) {
-                console.log('⚠️ Cloud load failed, using local data:', cloudError);
+                console.log('⚠️ Cloud load failed:', cloudError);
             }
             
             // Fallback to localStorage
@@ -136,6 +154,44 @@ class CloudSync {
             console.log('❌ Upstash Redis connection error:', error);
             return false;
         }
+    }
+
+    // Debug function to check what's in Redis
+    async debugRedis() {
+        try {
+            console.log('🔍 Checking Redis data...');
+            const response = await fetch(`${this.restUrl}/get/${this.dataKey}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${this.restToken}`,
+                }
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                console.log('📦 Raw Redis result:', result);
+                console.log('📊 Parsed data:', result.result);
+                return result;
+            } else {
+                console.log('❌ Redis debug failed:', response.status);
+                return null;
+            }
+        } catch (error) {
+            console.log('❌ Redis debug error:', error);
+            return null;
+        }
+    }
+
+    // Force save test data
+    async saveTestData() {
+        const testData = {
+            users: [{ id: 'test-user', name: 'Test User', email: 'test@example.com' }],
+            orders: [{ id: 'test-order', product: 'Test Coal', quantity: 10 }],
+            lastUpdated: Date.now()
+        };
+        
+        console.log('🧪 Saving test data to Redis...');
+        return await this.saveData(testData);
     }
 }
 
