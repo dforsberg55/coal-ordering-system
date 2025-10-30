@@ -217,12 +217,36 @@ class CloudSync {
     async saveTestData() {
         const testData = {
             users: [{ id: 'test-user', name: 'Test User', email: 'test@example.com' }],
-            orders: [{ id: 'test-order', product: 'Test Coal', quantity: 10 }],
+            orders: [{ id: 'test-order', product: 'Test Coal', quantity: 10, status: 'pending' }],
             lastUpdated: Date.now()
         };
         
         console.log('🧪 Saving test data to Redis...');
         return await this.saveData(testData);
+    }
+
+    // Clear all data from Redis
+    async clearRedis() {
+        try {
+            const response = await fetch(`${this.restUrl}/del/${this.dataKey}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.restToken}`,
+                }
+            });
+            
+            if (response.ok) {
+                console.log('🗑️ Redis data cleared');
+                localStorage.removeItem(this.storageKey);
+                return true;
+            } else {
+                console.log('❌ Failed to clear Redis');
+                return false;
+            }
+        } catch (error) {
+            console.log('❌ Clear Redis error:', error);
+            return false;
+        }
     }
 }
 

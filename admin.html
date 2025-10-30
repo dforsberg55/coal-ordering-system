@@ -886,7 +886,7 @@
         </div>
     </div>
 
-    <script src="url-sync.js?v=8"></script>
+    <script src="url-sync.js?v=9"></script>
     <script>
         let orders = [];
         let currentFilter = 'all';
@@ -1021,7 +1021,7 @@
                 <div class="order-item ${order.status}">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
-                        <span class="status ${order.status}">${order.status.replace('_', ' ')}</span>
+                        <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
                     </div>
                     
                     <div class="order-details">
@@ -1123,7 +1123,7 @@
                 <div class="order-item ${order.status}">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
-                        <span class="status ${order.status}">${order.status.replace('_', ' ')}</span>
+                        <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
                     </div>
                     
                     <div class="order-details">
