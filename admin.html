@@ -1403,17 +1403,18 @@
                 alert(`Order #${orderId} has been deleted`);
             }
         }
-        setInterval(() => {
-            orders = JSON.parse(localStorage.getItem('adminOrders') || '[]');
-            updateStats();
-            loadOrders();
-        }, 10000);
+        // Removed old localStorage-based auto-refresh (replaced by cloud sync below)
 
         // Initial load
         async function initializeAdmin() {
             // Load from cloud
             const cloudData = await window.CloudSync.loadData();
             orders = cloudData.orders || [];
+            
+            // Set initial timestamp to prevent unnecessary refreshes
+            if (cloudData.lastUpdated) {
+                lastDataTimestamp = cloudData.lastUpdated;
+            }
             
             updateStats();
             showSection('orders');
@@ -1753,21 +1754,37 @@
             });
         }
 
-        // Auto-refresh every 3 seconds from cloud
+        // Smart auto-refresh - only update UI when data actually changes
+        let lastDataTimestamp = 0;
+        
         setInterval(async () => {
-            const cloudData = await window.CloudSync.loadData();
-            if (cloudData.orders) {
-                orders = cloudData.orders;
-                updateStats();
-                if (currentSection === 'orders') {
-                    loadOrders();
-                } else if (currentSection === 'customers') {
-                    loadCustomers();
-                } else if (currentSection === 'analytics') {
-                    loadAnalytics();
+            try {
+                const cloudData = await window.CloudSync.loadData();
+                if (cloudData && cloudData.lastUpdated && cloudData.lastUpdated !== lastDataTimestamp) {
+                    // Data has changed, update the UI
+                    console.log('🔄 Data updated, refreshing UI');
+                    lastDataTimestamp = cloudData.lastUpdated;
+                    
+                    if (cloudData.orders) {
+                        orders = cloudData.orders;
+                        updateStats();
+                        
+                        if (currentSection === 'orders') {
+                            loadOrders();
+                        } else if (currentSection === 'customers') {
+                            loadCustomers();
+                        } else if (currentSection === 'analytics') {
+                            loadAnalytics();
+                        }
+                    }
+                } else {
+                    // No changes, just update timestamp silently
+                    console.log('📊 No data changes detected');
                 }
+            } catch (error) {
+                console.log('⚠️ Auto-refresh error:', error);
             }
-        }, 3000);
+        }, 5000); // Reduced to 5 seconds since it's now smarter
     </script>
 </body>
 </html>
