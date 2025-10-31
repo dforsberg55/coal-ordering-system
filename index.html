@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coal Ordering System | Professional Coal Distribution</title>
+    <meta name="description" content="Leading provider of energy, property development, and agricultural solutions. Explore our comprehensive services across three specialized divisions.">
+    <title>CoalPro | Energy, Property & Agriculture Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -221,6 +222,221 @@
             color: #E2E8F0;
         }
 
+
+        /* Company Overview Styles */
+        .company-overview {
+            margin-top: 50px;
+        }
+        
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3A3A39;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-weight: 500;
+        }
+
+        /* Divisions Section */
+        .divisions {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .divisions h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+        
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .division-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .division-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A3A39, #F4D03F);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .division-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .division-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+        
+        .division-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+        }
+        
+        .division-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .division-card > p {
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .division-services {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .division-services li {
+            padding: 8px 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .division-services li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #F4D03F;
+            font-weight: bold;
+        }
+        
+        .division-cta {
+            margin-top: 30px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #3A3A39;
+            border: 2px solid #3A3A39;
+        }
+        
+        .btn-outline:hover {
+            background: #3A3A39;
+            color: #F4D03F;
+        }
+
+        /* Portal Access Section */
+        .portal-access {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .portal-access h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        /* Update existing portal selection for this section */
+        .portal-access .portal-selection {
+            margin-top: 50px;
+        }
+        /* About Section */
+        .about {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 30px;
+        }
+        
+        .about p {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .about-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .value-item h4 {
+            color: #3A3A39;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .value-item p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -244,8 +460,9 @@
                 <a href="#" class="logo">Coal<span>Pro</span></a>
                 <nav>
                     <ul class="nav-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#divisions">Our Divisions</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -256,61 +473,169 @@
     <!-- White background main content -->
     <main class="hero">
         <div class="container">
-            <h1>Professional Coal Distribution System</h1>
-            <p>Streamline your coal ordering process with our comprehensive management platform. From order placement to delivery tracking, we've got you covered.</p>
+            <h1>Leading Multi-Division Solutions Provider</h1>
+            <p>Delivering excellence across Energy, Property Development, and Agriculture sectors. Our integrated approach ensures comprehensive solutions for your business needs.</p>
+            
+            <!-- Company Overview -->
+            <div class="company-overview">
+                <div class="overview-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Specialized Divisions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Satisfied Clients</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Company Divisions Section -->
+    <section class="divisions" id="divisions">
+        <div class="container">
+            <h2>Our Three Specialized Divisions</h2>
+            <p class="section-subtitle">Each division brings deep expertise and tailored solutions to meet your specific industry needs</p>
+            
+            <div class="divisions-grid">
+                <div class="division-card energy">
+                    <div class="division-icon">⚡</div>
+                    <h3>Energy Division</h3>
+                    <p>Comprehensive energy solutions including coal distribution, renewable energy projects, and power generation services.</p>
+                    <ul class="division-services">
+                        <li>Coal Supply & Distribution</li>
+                        <li>Energy Consulting</li>
+                        <li>Power Generation Solutions</li>
+                        <li>Renewable Energy Projects</li>
+                    </ul>
+                    <div class="division-cta">
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="division-card property">
+                    <div class="division-icon">🏢</div>
+                    <h3>Property Division</h3>
+                    <p>Full-service property development, management, and investment solutions for commercial and residential projects.</p>
+                    <ul class="division-services">
+                        <li>Property Development</li>
+                        <li>Project Management</li>
+                        <li>Investment Advisory</li>
+                        <li>Facility Management</li>
+                    </ul>
+                    <div class="division-cta">
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="division-card agri">
+                    <div class="division-icon">🌾</div>
+                    <h3>Agriculture Division</h3>
+                    <p>Modern agricultural solutions, farming technology, and sustainable food production systems.</p>
+                    <ul class="division-services">
+                        <li>Crop Production</li>
+                        <li>Agricultural Technology</li>
+                        <li>Supply Chain Management</li>
+                        <li>Sustainable Farming</li>
+                    </ul>
+                    <div class="division-cta">
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Portal Access -->
+    <section class="portal-access">
+        <div class="container">
+            <h2>Access Our Services</h2>
+            <p class="section-subtitle">Ready to get started? Access our customer portal to place orders, track services, and manage your account</p>
             
             <div class="portal-selection">
                 <div class="portal-card" onclick="setRole('customer')">
                     <div class="portal-icon">👥</div>
                     <h3>Customer Portal</h3>
-                    <p>Place orders, track deliveries, and manage your coal supply chain with ease.</p>
+                    <p>Place orders, track deliveries, and manage your account across all our divisions.</p>
                     <div class="btn">Access Customer Portal</div>
                 </div>
 
                 <div class="portal-card" onclick="setRole('admin')">
                     <div class="portal-icon">⚙️</div>
                     <h3>Admin Dashboard</h3>
-                    <p>Manage orders, approve requests, and oversee the entire distribution process.</p>
+                    <p>Manage orders, approve requests, and oversee operations across all divisions.</p>
                     <div class="btn">Access Admin Dashboard</div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Grey banner features section -->
-    <section class="features" id="features">
+    <!-- Grey banner services section -->
+    <section class="features" id="services">
         <div class="container">
-            <h2>System Features</h2>
+            <h2>Our Core Services</h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">📋</div>
-                    <h4>Order Management</h4>
-                    <p>Comprehensive order tracking from placement to delivery</p>
+                    <h4>Project Management</h4>
+                    <p>End-to-end project management across all divisions with proven methodologies</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">💳</div>
-                    <h4>Payment Processing</h4>
-                    <p>Secure payment handling with real-time status updates</p>
+                    <h4>Financial Solutions</h4>
+                    <p>Flexible payment options and financial planning for all your business needs</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">📊</div>
-                    <h4>Analytics Dashboard</h4>
-                    <p>Detailed insights into sales trends and performance metrics</p>
+                    <h4>Analytics & Reporting</h4>
+                    <p>Comprehensive data insights and performance analytics across all operations</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🔄</div>
-                    <h4>Real-time Sync</h4>
-                    <p>Cross-device synchronization for seamless collaboration</p>
+                    <h4>Supply Chain Management</h4>
+                    <p>Integrated supply chain solutions ensuring efficiency and reliability</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🚚</div>
-                    <h4>Delivery Tracking</h4>
-                    <p>Monitor shipments and delivery status in real-time</p>
+                    <h4>Logistics & Delivery</h4>
+                    <p>Professional logistics services with real-time tracking and monitoring</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">👨‍💼</div>
-                    <h4>Customer Management</h4>
-                    <p>Comprehensive customer profiles and order history</p>
+                    <h4>Consulting Services</h4>
+                    <p>Expert consultation and strategic planning across all business sectors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About CoalPro</h2>
+                    <p>With over 25 years of experience, CoalPro has evolved from a coal distribution company into a comprehensive multi-division solutions provider. Our three specialized divisions work together to deliver integrated solutions across Energy, Property Development, and Agriculture sectors.</p>
+                    <p>We pride ourselves on innovation, reliability, and sustainable business practices that benefit our clients, communities, and the environment.</p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <h4>Innovation</h4>
+                            <p>Cutting-edge solutions for modern challenges</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Reliability</h4>
+                            <p>Consistent delivery and dependable partnerships</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Sustainability</h4>
+                            <p>Environmentally responsible business practices</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
