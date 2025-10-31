@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Division | CoalPro - Premium Coal & Diesel Solutions</title>
+    <meta name="description" content="Premium A-Grade Washed Coal and 100% Clean Diesel products from CoalPro's Energy Division. Professional energy solutions for industrial and commercial needs.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Grey banner header */
+        .header {
+            background: #3A3A39;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #F4D03F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F4D03F;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(58, 58, 57, 0.95), rgba(42, 42, 41, 0.95)),
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3Cpattern id='energy-pattern' x='0' y='0' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='30' cy='30' r='2' fill='%23F4D03F' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='1200' height='600' fill='url(%23energy-pattern)'/%3E%3C/svg%3E");
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #E2E8F0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-nav a {
+            color: #3A3A39;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #F4D03F;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A3A39, #F4D03F);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #F4D03F;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .product-specs {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .product-specs h4 {
+            color: #3A3A39;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .btn {
+            background: #3A3A39;
+            color: #F4D03F;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #3A3A39;
+            border: 2px solid #3A3A39;
+        }
+
+        .btn-secondary:hover {
+            background: #3A3A39;
+            color: #F4D03F;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #3A3A39;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F4D03F;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #E2E8F0;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 1.1rem;
+            min-width: 200px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2A2A29;
+            text-align: center;
+            padding: 40px 0;
+            color: #E2E8F0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grey banner header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Coal<span>Pro</span></a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html#divisions">Our Divisions</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="login.html">Customer Portal</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / <a href="index.html#divisions">Divisions</a> / Energy Division
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Energy Division</h1>
+            <p>Premium coal and diesel solutions for industrial and commercial energy needs. Quality products backed by decades of expertise.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Premium Energy Products</h2>
+                <p>We specialize in high-quality energy products that meet the demanding requirements of modern industry and commerce.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- A-Grade Washed Coal -->
+                <div class="product-card">
+                    <div class="product-icon">⚫</div>
+                    <h3>A-Grade Washed Coal</h3>
+                    <p class="product-description">
+                        Premium quality washed coal with superior calorific value and minimal ash content. 
+                        Our A-Grade coal undergoes rigorous washing processes to ensure consistent quality 
+                        and optimal performance for industrial applications.
+                    </p>
+                    
+                    <ul class="product-features">
+                        <li>High calorific value (6000+ kcal/kg)</li>
+                        <li>Low ash content (8-12%)</li>
+                        <li>Consistent size grading</li>
+                        <li>Minimal moisture content</li>
+                        <li>Environmentally processed</li>
+                        <li>Reliable supply chain</li>
+                    </ul>
+
+                    <div class="product-specs">
+                        <h4>Technical Specifications</h4>
+                        <div class="spec-item">
+                            <span class="spec-label">Calorific Value:</span>
+                            <span class="spec-value">6000-6500 kcal/kg</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Ash Content:</span>
+                            <span class="spec-value">8-12%</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Moisture:</span>
+                            <span class="spec-value">6-8%</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Size:</span>
+                            <span class="spec-value">0-50mm (customizable)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Minimum Order:</span>
+                            <span class="spec-value">10 tons</span>
+                        </div>
+                    </div>
+
+                    <a href="login.html?product=coal" class="btn">Place Coal Order</a>
+                </div>
+
+                <!-- Premium Diesel -->
+                <div class="product-card">
+                    <div class="product-icon">⛽</div>
+                    <h3>Premium Clean Diesel</h3>
+                    <p class="product-description">
+                        100% clean, unmixed, and unblended diesel fuel meeting the highest industry standards. 
+                        Our premium diesel ensures optimal engine performance, reduced emissions, and 
+                        maximum fuel efficiency for all your commercial and industrial needs.
+                    </p>
+                    
+                    <ul class="product-features">
+                        <li>100% pure, unblended diesel</li>
+                        <li>Ultra-low sulfur content</li>
+                        <li>Superior fuel efficiency</li>
+                        <li>Reduced engine wear</li>
+                        <li>Lower emissions</li>
+                        <li>Fast delivery service</li>
+                    </ul>
+
+                    <div class="product-specs">
+                        <h4>Technical Specifications</h4>
+                        <div class="spec-item">
+                            <span class="spec-label">Sulfur Content:</span>
+                            <span class="spec-value">≤ 10 ppm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cetane Number:</span>
+                            <span class="spec-value">≥ 51</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Density:</span>
+                            <span class="spec-value">820-845 kg/m³</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Flash Point:</span>
+                            <span class="spec-value">≥ 55°C</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Minimum Order:</span>
+                            <span class="spec-value">1000 liters</span>
+                        </div>
+                    </div>
+
+                    <a href="login.html?product=diesel" class="btn">Place Diesel Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Place Your Order?</h2>
+            <p>Access our customer portal to place orders, track deliveries, and manage your energy supply needs with our professional ordering system.</p>
+            
+            <div class="cta-buttons">
+                <a href="login.html" class="btn btn-large">Access Customer Portal</a>
+                <a href="index.html#contact" class="btn btn-secondary btn-large">Contact Sales Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CoalPro Energy Division. Premium energy solutions for industrial excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

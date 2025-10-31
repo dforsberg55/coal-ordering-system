@@ -411,7 +411,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Quantity (tons):</label>
+                    <label id="quantityLabel">Quantity:</label>
                     <input type="number" id="quantity" min="1" required>
                 </div>
                 
@@ -492,32 +492,37 @@
     <script>
         const products = [
             {
-                productId: 'coal-grade-a',
-                name: 'Premium Grade A Coal',
-                description: 'High quality coal from Mpumalanga mines. Perfect for industrial heating and power generation.',
+                productId: 'coal-grade-a-washed',
+                name: 'A-Grade Washed Coal',
+                description: 'Premium quality washed coal with superior calorific value (6000+ kcal/kg) and minimal ash content (8-12%). Environmentally processed for optimal performance.',
                 pricePerTon: 1200,
-                minOrder: 10
+                minOrder: 10,
+                unit: 'tons'
+            },
+            {
+                productId: 'premium-clean-diesel',
+                name: 'Premium Clean Diesel',
+                description: '100% clean, unmixed, and unblended diesel fuel. Ultra-low sulfur content (≤10 ppm) with superior fuel efficiency and reduced emissions.',
+                pricePerTon: 15000, // Price per 1000 liters
+                minOrder: 1, // 1000 liters minimum
+                unit: '1000L',
+                unitLabel: '1000 liters'
             },
             {
                 productId: 'coal-grade-b',
                 name: 'Standard Grade B Coal',
                 description: 'Good quality coal for industrial use. Reliable energy source for manufacturing.',
                 pricePerTon: 950,
-                minOrder: 5
+                minOrder: 5,
+                unit: 'tons'
             },
             {
                 productId: 'coal-anthracite',
                 name: 'Anthracite Coal',
                 description: 'Premium hard coal with high carbon content. Excellent for heating applications.',
                 pricePerTon: 1500,
-                minOrder: 15
-            },
-            {
-                productId: 'coal-bituminous',
-                name: 'Bituminous Coal',
-                description: 'Versatile coal suitable for power generation and steel production.',
-                pricePerTon: 800,
-                minOrder: 20
+                minOrder: 15,
+                unit: 'tons'
             }
         ];
 
@@ -573,10 +578,14 @@
         }
 
         function showOrderForm(productId, productName, minOrder, pricePerTon) {
+            const product = products.find(p => p.name === productName);
+            const unit = product ? (product.unitLabel || product.unit || 'tons') : 'tons';
+            
             document.getElementById('selectedProduct').value = productName;
             document.getElementById('productDisplay').value = productName;
             document.getElementById('quantity').min = minOrder;
             document.getElementById('quantity').value = minOrder;
+            document.getElementById('quantityLabel').textContent = `Quantity (${unit}):`;
             
             // Pre-fill customer data
             document.getElementById('companyName').value = currentUser.company;
