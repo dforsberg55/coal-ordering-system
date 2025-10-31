@@ -4,65 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 Coal Orders - Customer Portal</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0 20px;
         }
+
+        
+        /* Grey banner header */
         .header {
-            text-align: center;
-            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            background: #3A3A39;
             color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            padding: 20px 0;
+            margin-bottom: 0;
         }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #F4D03F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F4D03F;
+        }
+
+
+        .user-info {
+            color: #E2E8F0;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            background: #3A3A39;
+            color: #F4D03F;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
+        }
+
         .nav {
             background: white;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
+            border: 2px solid #E2E8F0;
         }
+
         .nav button {
             background: #3A3A39;
-            color: white;
+            color: #F4D03F;
             border: none;
             padding: 10px 20px;
             margin: 0 10px;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
+
         .nav button.active {
             background: #2A2A29;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(58, 58, 57, 0.3);
         }
+
         .section {
             display: none;
         }
+
         .section.active {
             display: block;
         }
+
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
+
         .product {
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
         }
+
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+
         .product h3 {
-            color: #2c3e50;
+            color: #2d3748;
             margin-top: 0;
         }
+
         .order-btn {
-            background: #e74c3c;
-            color: white;
+            background: #3A3A39;
+            color: #F4D03F;
             border: none;
             padding: 12px 25px;
             border-radius: 5px;
@@ -70,79 +172,96 @@
             font-size: 16px;
             width: 100%;
             margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
+
         .order-btn:hover {
-            background: #c0392b;
+            background: #2A2A29;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(58, 58, 57, 0.3);
         }
-        .order-form {
+
+        .order-form, .orders-section {
             background: white;
             padding: 30px;
             border-radius: 10px;
             margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
+
         .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
-            border: 2px solid #ecf0f1;
+            border: 2px solid #E2E8F0;
             border-radius: 5px;
             font-size: 14px;
         }
+
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #3A3A39;
+            border-color: #F4D03F;
         }
+
         .submit-btn {
-            background: #27ae60;
-            color: white;
+            background: #3A3A39;
+            color: #F4D03F;
             border: none;
             padding: 15px 30px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
+
         .submit-btn:hover {
-            background: #229954;
+            background: #2A2A29;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(58, 58, 57, 0.3);
         }
-        .orders-section {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+
         .order-item {
             border: 1px solid #ddd;
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
             border-left: 5px solid #3A3A39;
+            background: white;
         }
+
         .order-item.pending {
             border-left-color: #f39c12;
             background: #fef9e7;
         }
+
         .order-item.approved {
             border-left-color: #27ae60;
             background: #eafaf1;
         }
+
         .order-item.delivered {
             border-left-color: #2ecc71;
             background: #e8f8f5;
         }
+
         .order-item.rejected {
             border-left-color: #e74c3c;
             background: #fdf2f2;
         }
+
         .status {
             display: inline-block;
             padding: 5px 15px;
@@ -151,28 +270,34 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
         .status.pending {
             background: #fff3cd;
             color: #856404;
         }
+
         .status.approved {
             background: #d4edda;
             color: #155724;
         }
+
         .status.delivered {
             background: #d1ecf1;
             color: #0c5460;
         }
+
         .status.rejected {
             background: #f8d7da;
             color: #721c24;
         }
+
         .payment-form {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
         }
+
         .success {
             background: #d4edda;
             color: #155724;
@@ -181,6 +306,7 @@
             margin: 15px 0;
             border: 1px solid #c3e6cb;
         }
+
         .back-btn {
             background: #95a5a6;
             color: white;
@@ -190,6 +316,7 @@
             cursor: pointer;
             margin-top: 20px;
         }
+
         .financial-summary {
             background: #e8f5e8;
             border: 2px solid #27ae60;
@@ -197,6 +324,7 @@
             padding: 15px;
             margin: 15px 0;
         }
+
         .payment-status {
             display: inline-block;
             padding: 6px 12px;
@@ -205,24 +333,43 @@
             font-weight: bold;
             margin: 5px 0;
         }
+
         .payment-confirmed { background: #d4edda; color: #155724; }
         .payment-pending { background: #fff3cd; color: #856404; }
         .payment-refunded { background: #f8d7da; color: #721c24; }
         .payment-failed { background: #f8d7da; color: #721c24; }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🔥 Coal Orders - Customer Portal</h1>
-        <p>Welcome, <span id="customerName">Customer</span>!</p>
-        <div style="margin-top: 15px;">
-            <button onclick="goToAdmin()" style="background: #3A3A39; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-                ⚙️ Admin Portal
-            </button>
-            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
-                🚪 Logout
-            </button>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Coal<span>Pro</span></div>
+            <div>
+                <div class="user-info">Welcome, <span id="customerName">Customer</span>!</div>
+                <div class="header-buttons">
+                    <button onclick="goToAdmin()" class="btn">⚙️ Admin Portal</button>
+                    <button onclick="logout()" class="btn btn-secondary">🚪 Logout</button>
+                </div>
+            </div>
         </div>
+    </header>
+
+    <div class="container">
     </div>
 
     <div class="nav">
@@ -341,7 +488,7 @@
         </div>
     </div>
 
-    <script src="url-sync.js?v=9"></script>
+    <script src="url-sync.js?v=10"></script>
     <script>
         const products = [
             {
@@ -414,7 +561,7 @@
                 <div class="product">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
-                    <div style="font-size: 24px; font-weight: bold; color: #e74c3c; margin: 15px 0;">
+                    <div class="price">
                         R${product.pricePerTon.toLocaleString()}/ton
                     </div>
                     <p><strong>Minimum Order:</strong> ${product.minOrder} tons</p>

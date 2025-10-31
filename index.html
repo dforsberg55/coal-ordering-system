@@ -3,148 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Coal Ordering System</title>
+    <title>Coal Ordering System | Professional Coal Distribution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
+            min-height: 100vh;
         }
-                .header {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Grey banner header */
+        .header {
             background: #3A3A39;
             color: white;
             padding: 20px 0;
             margin-bottom: 0;
         }
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .role-selection h3 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-        .portals {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .portal-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
             color: white;
-            padding: 30px;
-            border-radius: 15px;
             text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
+        }
+
+        .logo span {
+            color: #F4D03F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F4D03F;
+        }
+
+        /* White background hero section */
+        .hero {
+            background: white;
+            text-align: center;
+            padding: 80px 0;
+            color: #2d3748;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #2d3748;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #718096;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .portal-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .portal-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
+
         .portal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
         }
-        .portal-card.admin {
-            background: linear-gradient(135deg, #3A3A39 0%, #3A3A39 100%);
-        }
+
         .portal-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        .portal-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .portal-description {
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-        .features {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-        }
-        .features h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            text-align: left;
-        }
-        .feature-item {
+            width: 80px;
+            height: 80px;
+            background: #3A3A39;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            color: #2c3e50;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: #F4D03F;
         }
-        .feature-item::before {
-            content: "✅";
-            margin-right: 10px;
+
+        .portal-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .portal-card p {
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: #3A3A39;
+            color: #F4D03F;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
+        }
+
+        /* Grey banner for features section */
+        .features {
+            background: #3A3A39;
+            color: white;
+            padding: 60px 0;
+            margin: 60px 0 0 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F4D03F;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #F4D03F;
+            color: #3A3A39;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #E2E8F0;
+            font-size: 0.95rem;
+        }
+
+        /* Grey banner footer */
+        .footer {
+            background: #2A2A29;
+            text-align: center;
+            padding: 40px 0;
+            color: #E2E8F0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portal-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔥 Coal Ordering System</h1>
-            <p>Complete order management solution for coal distribution</p>
+    <!-- Grey banner header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Coal<span>Pro</span></a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+    </header>
 
-        <div class="role-selection">
-            <h3>Select Your Role</h3>
-            <div class="portals">
-                <button onclick="setRole('customer')" class="portal-card">
+    <!-- White background main content -->
+    <main class="hero">
+        <div class="container">
+            <h1>Professional Coal Distribution System</h1>
+            <p>Streamline your coal ordering process with our comprehensive management platform. From order placement to delivery tracking, we've got you covered.</p>
+            
+            <div class="portal-selection">
+                <div class="portal-card" onclick="setRole('customer')">
                     <div class="portal-icon">👥</div>
-                    <div class="portal-title">I'm a Customer</div>
-                    <div class="portal-description">
-                        I want to place orders and track deliveries
-                    </div>
-                </button>
+                    <h3>Customer Portal</h3>
+                    <p>Place orders, track deliveries, and manage your coal supply chain with ease.</p>
+                    <div class="btn">Access Customer Portal</div>
+                </div>
 
-                <button onclick="setRole('admin')" class="portal-card admin">
+                <div class="portal-card" onclick="setRole('admin')">
                     <div class="portal-icon">⚙️</div>
-                    <div class="portal-title">I'm an Admin</div>
-                    <div class="portal-description">
-                        I manage orders and approve requests
-                    </div>
-                </button>
+                    <h3>Admin Dashboard</h3>
+                    <p>Manage orders, approve requests, and oversee the entire distribution process.</p>
+                    <div class="btn">Access Admin Dashboard</div>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="features">
-            <h3>System Features</h3>
-            <div class="feature-list">
-                <div class="feature-item">Real-time order tracking</div>
-                <div class="feature-item">Automated approval workflow</div>
-                <div class="feature-item">Customer notifications</div>
-                <div class="feature-item">Admin dashboard</div>
-                <div class="feature-item">Order history</div>
-                <div class="feature-item">Status updates</div>
-                <div class="feature-item">Multi-product catalog</div>
-                <div class="feature-item">Province-based delivery</div>
+    <!-- Grey banner features section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>System Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📋</div>
+                    <h4>Order Management</h4>
+                    <p>Comprehensive order tracking from placement to delivery</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💳</div>
+                    <h4>Payment Processing</h4>
+                    <p>Secure payment handling with real-time status updates</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h4>Analytics Dashboard</h4>
+                    <p>Detailed insights into sales trends and performance metrics</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <h4>Real-time Sync</h4>
+                    <p>Cross-device synchronization for seamless collaboration</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h4>Delivery Tracking</h4>
+                    <p>Monitor shipments and delivery status in real-time</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍💼</div>
+                    <h4>Customer Management</h4>
+                    <p>Comprehensive customer profiles and order history</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="url-sync.js?v=9"></script>
+    <!-- Grey banner footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CoalPro Distribution System. Professional coal management solutions.</p>
+        </div>
+    </footer>
+
+    <script src="url-sync.js?v=11"></script>
     <script>
         function setRole(role) {
             localStorage.setItem('userRole', role);
@@ -154,6 +333,20 @@
                 window.location.href = 'admin.html';
             }
         }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

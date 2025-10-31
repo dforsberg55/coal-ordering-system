@@ -6,63 +6,138 @@
     <title>🔥 Coal Orders - Admin Panel</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background: white;
+            color: #2d3748;
         }
+
+        
+        /* Grey banner header */
+        .header {
+            background: #3A3A39;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #F4D03F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F4D03F;
+        }
+
+
         .header {
             text-align: center;
-            background: linear-gradient(135deg, #3A3A39, #3A3A39);
+            background: #3A3A39;
             color: white;
             padding: 30px;
             border-radius: 10px;
             margin-bottom: 30px;
         }
+
+        .header h1 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #E2E8F0;
+        }
+
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
+
         .stat-card {
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
             text-align: center;
+            transition: all 0.3s ease;
         }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+
         .stat-number {
             font-size: 32px;
             font-weight: bold;
             color: #3A3A39;
         }
+
         .orders-section {
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
         }
+
         .order-item {
             border: 1px solid #ddd;
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
             border-left: 5px solid #3A3A39;
+            background: white;
         }
+
         .order-item.pending {
             border-left-color: #f39c12;
             background: #fef9e7;
         }
+
         .order-item.approved {
             border-left-color: #27ae60;
             background: #eafaf1;
         }
+
         .order-item.rejected {
             border-left-color: #e74c3c;
             background: #fdf2f2;
         }
+
         .order-header {
             display: flex;
             justify-content: space-between;
@@ -70,11 +145,13 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
+
         .order-id {
             font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
+
         .status {
             display: inline-block;
             padding: 5px 15px;
@@ -83,44 +160,53 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
         .status.pending {
             background: #fff3cd;
             color: #856404;
         }
+
         .status.approved {
             background: #d4edda;
             color: #155724;
         }
+
         .status.rejected {
             background: #f8d7da;
             color: #721c24;
         }
+
         .order-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 15px;
         }
+
         .detail-item {
             background: #f8f9fa;
             padding: 10px;
             border-radius: 5px;
         }
+
         .detail-label {
             font-weight: bold;
             color: #6c757d;
             font-size: 12px;
             text-transform: uppercase;
         }
+
         .detail-value {
-            color: #2c3e50;
+            color: #2d3748;
             margin-top: 5px;
         }
+
         .action-buttons {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
+
         .btn {
             padding: 8px 16px;
             border: none;
@@ -128,53 +214,73 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
+
         .btn-approve {
             background: #27ae60;
             color: white;
         }
+
         .btn-approve:hover {
             background: #229954;
+            transform: translateY(-2px);
         }
+
         .btn-deliver {
             background: #3A3A39;
-            color: white;
+            color: #F4D03F;
         }
+
         .btn-deliver:hover {
             background: #2A2A29;
+            transform: translateY(-2px);
         }
+
         .btn-reject {
             background: #e74c3c;
             color: white;
         }
+
         .btn-edit {
-            background: #f39c12;
-            color: white;
+            background: #F4D03F;
+            color: #3A3A39;
         }
+
         .btn-edit:hover {
-            background: #e67e22;
+            background: #F1C40F;
+            transform: translateY(-2px);
         }
+
         .btn-reject:hover {
             background: #c0392b;
+            transform: translateY(-2px);
         }
+
         .filter-tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
+
         .filter-tab {
             padding: 10px 20px;
-            background: #ecf0f1;
+            background: #E2E8F0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            color: #2d3748;
+            transition: all 0.3s ease;
         }
+
         .filter-tab.active {
             background: #3A3A39;
-            color: white;
+            color: #F4D03F;
+            transform: translateY(-2px);
         }
+
         .customer-card {
             border: 1px solid #ddd;
             padding: 20px;
@@ -184,22 +290,26 @@
             background: white;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .customer-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
         .customer-name {
             font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
             margin-bottom: 10px;
         }
+
         .customer-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 10px;
             color: #7f8c8d;
         }
+
         .no-orders {
             text-align: center;
             color: #7f8c8d;
@@ -234,13 +344,13 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #ecf0f1;
+            border-bottom: 2px solid #E2E8F0;
         }
         
         .modal-title {
             font-size: 24px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
         
         .close {
@@ -263,14 +373,14 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ecf0f1;
+            border: 2px solid #E2E8F0;
             border-radius: 5px;
             font-size: 14px;
             transition: border-color 0.3s ease;
@@ -279,7 +389,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #3A3A39;
+            border-color: #F4D03F;
         }
         
         .form-group textarea {
@@ -306,7 +416,7 @@
         
         .modal-btn-primary {
             background: #3A3A39;
-            color: white;
+            color: #F4D03F;
         }
         
         .modal-btn-primary:hover {
@@ -367,13 +477,20 @@
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
         }
         
         .analytics-card h3 {
             margin-top: 0;
             margin-bottom: 20px;
-            color: #2c3e50;
+            color: #2d3748;
             font-size: 18px;
             border-bottom: 2px solid #3A3A39;
             padding-bottom: 10px;
@@ -384,7 +501,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px solid #ecf0f1;
+            border-bottom: 1px solid #E2E8F0;
         }
         
         .metric-item:last-child {
@@ -398,7 +515,7 @@
         
         .metric-value {
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
         
         .metric-value.positive {
@@ -415,12 +532,12 @@
             align-items: end;
             justify-content: space-around;
             padding: 20px 0;
-            border-top: 1px solid #ecf0f1;
+            border-top: 1px solid #E2E8F0;
             margin-top: 20px;
         }
         
         .chart-bar {
-            background: linear-gradient(to top, #3A3A39, #3A3A39);
+            background: linear-gradient(to top, #3A3A39, #F4D03F);
             width: 30px;
             border-radius: 3px 3px 0 0;
             position: relative;
@@ -428,7 +545,7 @@
         }
         
         .chart-bar:hover {
-            background: linear-gradient(to top, #2A2A29, #3A3A39);
+            background: linear-gradient(to top, #2A2A29, #F4D03F);
         }
         
         .chart-label {
@@ -448,11 +565,11 @@
             transform: translateX(-50%);
             font-size: 12px;
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
         
         .progress-bar {
-            background: #ecf0f1;
+            background: #E2E8F0;
             border-radius: 10px;
             height: 8px;
             overflow: hidden;
@@ -460,7 +577,7 @@
         }
         
         .progress-fill {
-            background: linear-gradient(to right, #3A3A39, #3A3A39);
+            background: linear-gradient(to right, #3A3A39, #F4D03F);
             height: 100%;
             border-radius: 10px;
             transition: width 0.3s ease;
@@ -477,7 +594,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #ecf0f1;
+            border-bottom: 1px solid #E2E8F0;
         }
         
         .top-products-list li:last-child {
@@ -486,7 +603,7 @@
         
         .product-rank {
             background: #3A3A39;
-            color: white;
+            color: #F4D03F;
             width: 25px;
             height: 25px;
             border-radius: 50%;
@@ -504,12 +621,249 @@
         
         .product-name {
             font-weight: bold;
-            color: #2c3e50;
+            color: #2d3748;
         }
         
         .product-orders {
             font-size: 12px;
             color: #7f8c8d;
+        }
+
+
+        /* Line-by-line order info styles */
+        .order-info-lines {
+            margin: 15px 0;
+        }
+        
+        .info-line {
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-line:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 140px;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .info-value {
+            color: #2d3748;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .order-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #3A3A39;
+        }
+        
+        .payment-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .payment-confirmed {
+            background: #c6f6d5;
+            color: #276749;
+        }
+        
+        .payment-pending {
+            background: #fed7aa;
+            color: #c05621;
+        }
+        
+        .payment-refunded, .payment-failed {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        
+        .rejection-line {
+            background: #fdf2f2;
+            border: 1px solid #e74c3c;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        
+        .rejection-text {
+            color: #721c24;
+            font-style: italic;
+        }
+        
+        /* Payment control styles */
+        .btn-payment {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+        }
+        
+        .btn-payment:hover {
+            background: #edf2f7;
+            transform: translateY(-1px);
+        }
+        
+        .btn-payment.active {
+            background: #3A3A39;
+            color: #F4D03F;
+            border-color: #3A3A39;
+        }
+        
+        .payment-controls {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* Collapsible order styles */
+        .order-summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-summary:hover {
+            background: #f8f9fa;
+        }
+        
+        .order-summary-left {
+            flex: 1;
+        }
+        
+        .order-summary-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .order-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .order-subtitle {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .order-value-badge {
+            background: #3A3A39;
+            color: #F4D03F;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .expand-icon {
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .expand-icon:hover {
+            background: #cbd5e0;
+        }
+        
+        .expand-icon.expanded {
+            background: #3A3A39;
+            color: #F4D03F;
+            transform: rotate(180deg);
+        }
+        
+        .order-details-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .order-details-full.expanded {
+            max-height: 1000px;
+        }
+        
+        .order-details-content {
+            padding: 20px;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .quick-action-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        .quick-action-btn.approve {
+            border-color: #27ae60;
+            color: #27ae60;
+        }
+        
+        .quick-action-btn.approve:hover {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .quick-action-btn.reject {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .quick-action-btn.reject:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        /* Hide original order details by default */
+        .order-details {
+            display: none;
+        }
+        
+        .order-item.expanded .order-details {
+            display: grid;
         }
     </style>
 </head>
@@ -518,7 +872,7 @@
         <h1>🔥 Coal Orders - Admin Panel</h1>
         <p>Manage and process customer orders</p>
         <div style="margin-top: 15px;">
-            <button onclick="goToCustomer()" style="background: #3A3A39; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            <button onclick="goToCustomer()" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
                 👥 Customer View
             </button>
             <button onclick="goHome()" style="background: #95a5a6; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
@@ -1018,7 +1372,37 @@
             }
 
             customerOrdersList.innerHTML = customerOrders.map(order => `
-                <div class="order-item ${order.status}">
+                <div class="order-item ${order.status}" id="order-${order.id}">
+                    <!-- Condensed Summary -->
+                    <div class="order-summary" onclick="toggleOrderDetails('${order.id}')">
+                        <div class="order-summary-left">
+                            <div class="order-title">
+                                Order #${order.id} - ${order.product}
+                                <span class="status ${order.status}" style="margin-left: 10px;">${(order.status || 'pending').replace('_', ' ')}</span>
+                            </div>
+                            <div class="order-subtitle">
+                                ${order.customerName || order.contact} • ${order.quantity} tons • ${new Date(order.date).toLocaleDateString()}
+                            </div>
+                        </div>
+                        <div class="order-summary-right">
+                            <div class="order-value-badge">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</div>
+                            ${order.status === 'pending' ? `
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn approve" onclick="event.stopPropagation(); updateOrderStatus('${order.id}', 'approved')" title="Quick Approve">
+                                        ✅
+                                    </button>
+                                    <button class="quick-action-btn reject" onclick="event.stopPropagation(); openRejectOrderModal('${order.id}')" title="Quick Reject">
+                                        ❌
+                                    </button>
+                                </div>
+                            ` : ''}
+                            <button class="expand-icon">▼</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Details (Initially Hidden) -->
+                    <div class="order-details-full">
+                        <div class="order-details-content">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
                         <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
@@ -1051,6 +1435,30 @@
                         </div>
                     </div>
 
+
+                            <!-- Payment Control Buttons -->
+                            <div class="payment-controls">
+                                <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                                <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'confirmed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'confirmed')">
+                                        ✅ Confirm
+                                    </button>
+                                    <button class="btn btn-payment ${(!order.paymentStatus || order.paymentStatus === 'pending') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'pending')">
+                                        ⏳ Pending
+                                    </button>
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'refunded') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'refunded')">
+                                        💰 Refund
+                                    </button>
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'failed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'failed')">
+                                        ❌ Failed
+                                    </button>
+                                </div>
+                            </div>
+                            
                     <div class="action-buttons">
                         ${order.status === 'pending' ? `
                             <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
@@ -1074,6 +1482,9 @@
                         <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
                             🗑️ Delete
                         </button>
+                    </div>
+                </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -1120,55 +1531,111 @@
             }
 
             ordersList.innerHTML = filteredOrders.map(order => `
-                <div class="order-item ${order.status}">
+                <div class="order-item ${order.status}" id="order-${order.id}">
+                    <!-- Condensed Summary -->
+                    <div class="order-summary" onclick="toggleOrderDetails('${order.id}')">
+                        <div class="order-summary-left">
+                            <div class="order-title">
+                                Order #${order.id} - ${order.product}
+                                <span class="status ${order.status}" style="margin-left: 10px;">${(order.status || 'pending').replace('_', ' ')}</span>
+                            </div>
+                            <div class="order-subtitle">
+                                ${order.customerName || order.contact} • ${order.quantity} tons • ${new Date(order.date).toLocaleDateString()}
+                            </div>
+                        </div>
+                        <div class="order-summary-right">
+                            <div class="order-value-badge">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</div>
+                            ${order.status === 'pending' ? `
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn approve" onclick="event.stopPropagation(); updateOrderStatus('${order.id}', 'approved')" title="Quick Approve">
+                                        ✅
+                                    </button>
+                                    <button class="quick-action-btn reject" onclick="event.stopPropagation(); openRejectOrderModal('${order.id}')" title="Quick Reject">
+                                        ❌
+                                    </button>
+                                </div>
+                            ` : ''}
+                            <button class="expand-icon">▼</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Details (Initially Hidden) -->
+                    <div class="order-details-full">
+                        <div class="order-details-content">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
                         <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
                     </div>
                     
-                    <div class="order-details">
-                        <div class="detail-item">
-                            <div class="detail-label">Product</div>
-                            <div class="detail-value">${order.product}</div>
+                    <div class="order-info-lines">
+                            <div class="info-line">
+                                <span class="info-label">📦 Product:</span>
+                                <span class="info-value">${order.product}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📏 Quantity:</span>
+                                <span class="info-value">${order.quantity} tons</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">💰 Order Value:</span>
+                                <span class="info-value order-value">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">💳 Payment Status:</span>
+                                <span class="payment-status ${(order.paymentStatus === 'confirmed') ? 'payment-confirmed' : (order.paymentStatus === 'refunded') ? 'payment-refunded' : (order.paymentStatus === 'failed') ? 'payment-failed' : 'payment-pending'}">${(order.paymentStatus === 'confirmed') ? '✅ Payment Confirmed' : (order.paymentStatus === 'refunded') ? '💰 Payment Refunded' : (order.paymentStatus === 'failed') ? '❌ Payment Failed' : '⏳ Payment Pending'}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">👤 Customer:</span>
+                                <span class="info-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📧 Email:</span>
+                                <span class="info-value">${order.email}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📞 Phone:</span>
+                                <span class="info-value">${order.phone}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📍 Address:</span>
+                                <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📅 Order Date:</span>
+                                <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
+                            </div>
+                            ${order.status === 'rejected' && order.rejectionReason ? `
+                            <div class="info-line rejection-line">
+                                <span class="info-label">❌ Rejection Reason:</span>
+                                <span class="info-value rejection-text">${order.rejectionReason}</span>
+                            </div>
+                            ` : ''}
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Quantity</div>
-                            <div class="detail-value">${order.quantity} tons</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Customer</div>
-                            <div class="detail-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Contact</div>
-                            <div class="detail-value">${order.contact}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Email</div>
-                            <div class="detail-value">${order.email}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Phone</div>
-                            <div class="detail-value">${order.phone}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Address</div>
-                            <div class="detail-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Order Date</div>
-                            <div class="detail-value">${new Date(order.date).toLocaleDateString()}</div>
-                        ${order.status === 'rejected' && order.rejectionReason ? `
-                            <div class="detail-item" style="grid-column: 1 / -1;">
-                                <div class="rejection-reason">
-                                    <strong>Rejection Reason:</strong> ${order.rejectionReason}
+
+
+                            <!-- Payment Control Buttons -->
+                            <div class="payment-controls">
+                                <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                                <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'confirmed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'confirmed')">
+                                        ✅ Confirm
+                                    </button>
+                                    <button class="btn btn-payment ${(!order.paymentStatus || order.paymentStatus === 'pending') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'pending')">
+                                        ⏳ Pending
+                                    </button>
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'refunded') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'refunded')">
+                                        💰 Refund
+                                    </button>
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'failed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'failed')">
+                                        ❌ Failed
+                                    </button>
                                 </div>
                             </div>
-                        ` : ''}
-
-                        </div>
-                    </div>
-
+                            
                     <div class="action-buttons">
                         ${order.status === 'pending' ? `
                             <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
@@ -1192,6 +1659,9 @@
                         <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
                             🗑️ Delete
                         </button>
+                    </div>
+                </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -1445,6 +1915,26 @@
             
             updateStats();
             showSection('orders');
+        }
+
+
+        // Toggle order details function
+        function toggleOrderDetails(orderId) {
+            const orderItem = document.getElementById(`order-${orderId}`);
+            const detailsContainer = orderItem.querySelector('.order-details-full');
+            const expandIcon = orderItem.querySelector('.expand-icon');
+            
+            if (detailsContainer.classList.contains('expanded')) {
+                // Collapse
+                detailsContainer.classList.remove('expanded');
+                expandIcon.classList.remove('expanded');
+                expandIcon.textContent = '▼';
+            } else {
+                // Expand
+                detailsContainer.classList.add('expanded');
+                expandIcon.classList.add('expanded');
+                expandIcon.textContent = '▲';
+            }
         }
 
         initializeAdmin();
