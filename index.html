@@ -15,8 +15,8 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #1a1a1a;
-            background: linear-gradient(135deg, #3A3A39 0%, #2A2A29 100%);
+            color: #2d3748;
+            background: white;
             min-height: 100vh;
         }
 
@@ -26,12 +26,12 @@
             padding: 0 20px;
         }
 
+        /* Grey banner header */
         .header {
-            background: rgba(58, 58, 57, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: #3A3A39;
+            color: white;
             padding: 20px 0;
-            margin-bottom: 60px;
+            margin-bottom: 0;
         }
 
         .header-content {
@@ -40,13 +40,15 @@
             align-items: center;
         }
 
-        .logo { font-size: 28px;
+        .logo {
+            font-size: 28px;
             font-weight: 700;
-            color: #C6C94A;
+            color: white;
             text-decoration: none;
         }
 
-        .logo span { color: #F4D03F;
+        .logo span {
+            color: #C6C94A;
         }
 
         .nav-links {
@@ -56,20 +58,22 @@
         }
 
         .nav-links a {
-            color: #3A3A39;
+            color: #E2E8F0;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #3A3A39;
+            color: #C6C94A;
         }
 
+        /* White background hero section */
         .hero {
+            background: white;
             text-align: center;
             padding: 80px 0;
-            color: white;
+            color: #2d3748;
         }
 
         .hero h1 {
@@ -77,12 +81,13 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
+            color: #2d3748;
         }
 
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 40px;
-            opacity: 0.9;
+            color: #718096;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -96,48 +101,50 @@
         }
 
         .portal-card {
-            background: rgba(58, 58, 57, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
+            border: 2px solid #E2E8F0;
             border-radius: 16px;
             padding: 40px;
             text-align: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
         }
 
         .portal-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 8px 16px rgba(198, 201, 74, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #C6C94A;
         }
 
         .portal-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #3A3A39 0%, #2A2A29 100%);
+            background: #3A3A39;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 2rem;
+            color: #C6C94A;
         }
 
-        .portal-card h3 { font-size: 1.5rem;
+        .portal-card h3 {
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #C6C94A;
+            color: #2d3748;
             margin-bottom: 15px;
         }
 
         .portal-card p {
-            color: #6B6B6A;
+            color: #718096;
             margin-bottom: 25px;
             line-height: 1.6;
         }
 
         .btn {
-            background: linear-gradient(135deg, #3A3A39, #2A2A29);
-            color: white;
+            background: #3A3A39;
+            color: #C6C94A;
             border: none;
             padding: 12px 30px;
             border-radius: 8px;
@@ -150,19 +157,20 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(198, 201, 74, 0.3);
+            box-shadow: 0 10px 20px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
         }
 
+        /* Grey banner for features section */
         .features {
-            background: rgba(58, 58, 57, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 60px 40px;
-            margin: 60px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #3A3A39;
+            color: white;
+            padding: 60px 0;
+            margin: 60px 0 0 0;
         }
 
-        .features h2 { text-align: center;
+        .features h2 {
+            text-align: center;
             font-size: 2.5rem;
             font-weight: 700;
             color: #C6C94A;
@@ -183,32 +191,34 @@
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #3A3A39 0%, #2A2A29 100%);
+            background: #C6C94A;
+            color: #3A3A39;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 1.5rem;
-            color: white;
         }
 
         .feature-item h4 {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #C6C94A;
+            color: white;
             margin-bottom: 10px;
         }
 
         .feature-item p {
-            color: #6B6B6A;
+            color: #E2E8F0;
             font-size: 0.95rem;
         }
 
+        /* Grey banner footer */
         .footer {
+            background: #2A2A29;
             text-align: center;
             padding: 40px 0;
-            color: rgba(255, 255, 255, 0.8);
+            color: #E2E8F0;
         }
 
         @media (max-width: 768px) {
@@ -227,6 +237,7 @@
     </style>
 </head>
 <body>
+    <!-- Grey banner header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -242,8 +253,9 @@
         </div>
     </header>
 
-    <main class="container">
-        <section class="hero">
+    <!-- White background main content -->
+    <main class="hero">
+        <div class="container">
             <h1>Professional Coal Distribution System</h1>
             <p>Streamline your coal ordering process with our comprehensive management platform. From order placement to delivery tracking, we've got you covered.</p>
             
@@ -262,9 +274,12 @@
                     <div class="btn">Access Admin Dashboard</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </main>
 
-        <section class="features" id="features">
+    <!-- Grey banner features section -->
+    <section class="features" id="features">
+        <div class="container">
             <h2>System Features</h2>
             <div class="features-grid">
                 <div class="feature-item">
@@ -298,9 +313,10 @@
                     <p>Comprehensive customer profiles and order history</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- Grey banner footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 CoalPro Distribution System. Professional coal management solutions.</p>

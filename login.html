@@ -14,47 +14,82 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #3A3A39 0%, #2A2A29 100%);
+            background: white;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            flex-direction: column;
         }
 
-        .login-container {
-            background: rgba(58, 58, 57, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 50px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 8px 16px rgba(198, 201, 74, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Grey banner header */
+        .header {
+            background: #3A3A39;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
         }
 
         .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: #C6C94A;
+        }
+
+        .tagline {
+            color: #E2E8F0;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* White background main content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .login-container {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 50px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .logo h1 { font-size: 2rem;
-            font-weight: 700;
-            color: #C6C94A;
+        .login-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
         }
 
-        .logo span { color: #F4D03F;
-        }
-
-        .logo p {
-            color: #C6C94A;
-            margin-top: 8px;
+        .login-header p {
+            color: #718096;
             font-size: 0.95rem;
         }
 
         .tabs {
             display: flex;
-            background: #f7fafc;
+            background: #F7FAFC;
             border-radius: 12px;
             padding: 4px;
             margin-bottom: 30px;
@@ -68,13 +103,12 @@
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
-            color: #6B6B6A;
+            color: #718096;
         }
 
         .tab.active {
-            background: #FAFAFA;
+            background: #3A3A39;
             color: #C6C94A;
-            box-shadow: 0 8px 16px rgba(198, 201, 74, 0.3);
         }
 
         .form-section {
@@ -93,33 +127,33 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #C6C94A;
+            color: #2d3748;
             font-size: 0.95rem;
         }
 
         .form-group input {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: #FAFAFA;
+            background: white;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #3A3A39;
+            border-color: #C6C94A;
             box-shadow: 0 0 0 3px rgba(198, 201, 74, 0.1);
         }
 
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #3A3A39 0%, #2A2A29 100%);
-            color: white;
+            background: #3A3A39;
+            color: #C6C94A;
             border: none;
             padding: 16px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -129,16 +163,17 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(198, 201, 74, 0.3);
+            box-shadow: 0 8px 16px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
         }
 
         .back-btn {
             width: 100%;
             background: transparent;
-            color: #6B6B6A;
-            border: 2px solid #e2e8f0;
+            color: #718096;
+            border: 2px solid #E2E8F0;
             padding: 14px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
@@ -147,27 +182,27 @@
         }
 
         .back-btn:hover {
-            border-color: #cbd5e0;
+            border-color: #C6C94A;
             color: #3A3A39;
         }
 
         .error {
-            background: #fed7d7;
-            color: #c53030;
+            background: #FED7D7;
+            color: #C53030;
             padding: 12px 16px;
             border-radius: 8px;
             margin: 15px 0;
-            border: 1px solid #feb2b2;
+            border: 1px solid #FEB2B2;
             font-size: 0.9rem;
         }
 
         .success {
-            background: #c6f6d5;
-            color: #2f855a;
+            background: #C6F6D5;
+            color: #2F855A;
             padding: 12px 16px;
             border-radius: 8px;
             margin: 15px 0;
-            border: 1px solid #9ae6b4;
+            border: 1px solid #9AE6B4;
             font-size: 0.9rem;
         }
 
@@ -189,74 +224,85 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <h1>Coal<span>Pro</span></h1>
-            <p>Professional Distribution System</p>
+    <!-- Grey banner header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Coal<span>Pro</span></div>
+            <div class="tagline">Professional Distribution System</div>
         </div>
+    </header>
 
-        <div class="tabs">
-            <div class="tab active" onclick="showTab('login')">Login</div>
-            <div class="tab" onclick="showTab('signup')">Create Account</div>
-        </div>
+    <!-- White background main content -->
+    <div class="main-content">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account or create a new one</p>
+            </div>
 
-        <div id="error" class="error" style="display: none;"></div>
-        <div id="success" class="success" style="display: none;"></div>
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('login')">Login</div>
+                <div class="tab" onclick="showTab('signup')">Create Account</div>
+            </div>
 
-        <!-- Login Form -->
-        <div id="login" class="form-section active">
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>Email Address:</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label>Password:</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="submit-btn">Sign In</button>
-            </form>
-        </div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="success" class="success" style="display: none;"></div>
 
-        <!-- Signup Form -->
-        <div id="signup" class="form-section">
-            <form id="signupForm">
-                <div class="form-group">
-                    <label>Company Name:</label>
-                    <input type="text" id="signupCompany" required>
-                </div>
-                <div class="form-group">
-                    <label>Contact Person:</label>
-                    <input type="text" id="signupContact" required>
-                </div>
-                <div class="form-group">
-                    <label>Email Address:</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number:</label>
-                    <input type="tel" id="signupPhone" required>
-                </div>
-                <div class="form-row">
+            <!-- Login Form -->
+            <div id="login" class="form-section active">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email Address:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
                     <div class="form-group">
                         <label>Password:</label>
-                        <input type="password" id="signupPassword" required minlength="6">
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup" class="form-section">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label>Company Name:</label>
+                        <input type="text" id="signupCompany" required>
                     </div>
                     <div class="form-group">
-                        <label>Confirm Password:</label>
-                        <input type="password" id="signupConfirmPassword" required minlength="6">
+                        <label>Contact Person:</label>
+                        <input type="text" id="signupContact" required>
                     </div>
-                </div>
-                <button type="submit" class="submit-btn">Create Account</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label>Email Address:</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input type="tel" id="signupPhone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" id="signupPassword" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password:</label>
+                            <input type="password" id="signupConfirmPassword" required minlength="6">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
 
-        <button class="back-btn" onclick="goHome()">← Back to Home</button>
+            <button class="back-btn" onclick="goHome()">← Back to Home</button>
+        </div>
     </div>
 
     <script src="url-sync.js?v=11"></script>
     <script>
-        // Simple cloud storage using CloudSync
+        // Same JavaScript functionality as before
         async function cloudSave(data) {
             try {
                 const success = await window.CloudSync.saveData(data);
