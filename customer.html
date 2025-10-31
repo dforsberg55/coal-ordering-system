@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 Coal Orders - Customer Portal</title>
+    <title>CoalPro Customer Portal - A-Grade Coal & Premium Diesel</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -373,7 +373,7 @@
     </div>
 
     <div class="nav">
-        <button id="productsBtn" class="active" onclick="showSection('products')">🛒 Order Coal</button>
+        <button id="productsBtn" class="active" onclick="showSection('products')">🛒 Place Order</button>
         <button id="ordersBtn" onclick="showSection('orders')">📋 My Orders</button>
     </div>
 
@@ -494,35 +494,33 @@
             {
                 productId: 'coal-grade-a-washed',
                 name: 'A-Grade Washed Coal',
-                description: 'Premium quality washed coal with superior calorific value (6000+ kcal/kg) and minimal ash content (8-12%). Environmentally processed for optimal performance.',
-                pricePerTon: 1200,
+                description: 'Premium quality washed coal with superior calorific value (6000+ kcal/kg) and minimal ash content (8-12%). Processed at our Witbank facility with rigorous quality control for optimal industrial performance.',
+                pricePerTon: 1850, // Current market price for premium washed coal
                 minOrder: 10,
-                unit: 'tons'
+                unit: 'tons',
+                specifications: {
+                    calorificValue: '6000-6500 kcal/kg',
+                    ashContent: '8-12%',
+                    moisture: '6-8%',
+                    size: '0-50mm (customizable)',
+                    origin: 'Witbank, Mpumalanga'
+                }
             },
             {
                 productId: 'premium-clean-diesel',
                 name: 'Premium Clean Diesel',
-                description: '100% clean, unmixed, and unblended diesel fuel. Ultra-low sulfur content (≤10 ppm) with superior fuel efficiency and reduced emissions.',
-                pricePerTon: 15000, // Price per 1000 liters
+                description: '100% clean, unmixed, and unblended diesel fuel meeting Euro 5 standards. Ultra-low sulfur content (≤10 ppm) with superior fuel efficiency and reduced emissions for industrial and commercial use.',
+                pricePerTon: 22500, // Current market price per 1000 liters (R22.50/L)
                 minOrder: 1, // 1000 liters minimum
                 unit: '1000L',
-                unitLabel: '1000 liters'
-            },
-            {
-                productId: 'coal-grade-b',
-                name: 'Standard Grade B Coal',
-                description: 'Good quality coal for industrial use. Reliable energy source for manufacturing.',
-                pricePerTon: 950,
-                minOrder: 5,
-                unit: 'tons'
-            },
-            {
-                productId: 'coal-anthracite',
-                name: 'Anthracite Coal',
-                description: 'Premium hard coal with high carbon content. Excellent for heating applications.',
-                pricePerTon: 1500,
-                minOrder: 15,
-                unit: 'tons'
+                unitLabel: '1000 liters',
+                specifications: {
+                    sulfurContent: '≤ 10 ppm',
+                    cetaneNumber: '≥ 51',
+                    density: '820-845 kg/m³',
+                    flashPoint: '≥ 55°C',
+                    standard: 'Euro 5 Compliant'
+                }
             }
         ];
 
