@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coal Distribution System | Professional Supply Management</title>
+    <title>🔥 Coal Ordering System</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,8 +23,11 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .header {
-            margin-bottom: 40px;
+                .header {
+            background: #3A3A39;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 0;
         }
         .header h1 {
             color: #2c3e50;
@@ -56,7 +59,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         .portal-card.admin {
-            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            background: linear-gradient(135deg, #3A3A39 0%, #3A3A39 100%);
         }
         .portal-icon {
             font-size: 3em;
@@ -96,68 +99,12 @@
             content: "✅";
             margin-right: 10px;
         }
-
-        /* Professional enhancements */
-        .portal-icon {
-            background: linear-gradient(135deg, #3A3A39, #2A2A29);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #F4D03F;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .portal-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(244, 208, 63, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: transform 0.6s ease;
-        }
-        
-        .portal-card:hover .portal-icon::before {
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-        
-        .customer-icon::after {
-            content: '👤';
-            font-size: 2rem;
-        }
-        
-        .admin-icon::after {
-            content: '⚙️';
-            font-size: 2rem;
-        }
-        
-        .feature-icon {
-            background: #F4D03F;
-            color: #3A3A39;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-icon::after {
-            content: '⚡';
-            font-size: 1.5rem;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Coal Ordering System</h1>
+            <h1>🔥 Coal Ordering System</h1>
             <p>Complete order management solution for coal distribution</p>
         </div>
 
@@ -165,7 +112,7 @@
             <h3>Select Your Role</h3>
             <div class="portals">
                 <button onclick="setRole('customer')" class="portal-card">
-                    <div class="portal-icon"></div>
+                    <div class="portal-icon">👥</div>
                     <div class="portal-title">I'm a Customer</div>
                     <div class="portal-description">
                         I want to place orders and track deliveries
@@ -173,7 +120,7 @@
                 </button>
 
                 <button onclick="setRole('admin')" class="portal-card admin">
-                    <div class="portal-icon"></div>
+                    <div class="portal-icon">⚙️</div>
                     <div class="portal-title">I'm an Admin</div>
                     <div class="portal-description">
                         I manage orders and approve requests

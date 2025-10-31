@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Coal Distribution System</title>
+    <title>🔥 Coal Orders - Customer Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,7 +49,7 @@
             font-weight: bold;
         }
         .tab.active {
-            background: #3498db;
+            background: #3A3A39;
             color: white;
         }
         .form-section {
@@ -76,12 +76,12 @@
             box-sizing: border-box;
         }
         .form-group input:focus {
-            border-color: #3498db;
+            border-color: #3A3A39;
             outline: none;
         }
         .submit-btn {
             width: 100%;
-            background: #3498db;
+            background: #3A3A39;
             color: white;
             border: none;
             padding: 15px;
@@ -92,7 +92,7 @@
             margin-bottom: 15px;
         }
         .submit-btn:hover {
-            background: #2980b9;
+            background: #2A2A29;
         }
         .back-btn {
             width: 100%;
@@ -128,7 +128,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Customer Portal</h1>
+            <h1>🔥 Customer Portal</h1>
             <p>Login or create your account</p>
         </div>
 
@@ -288,17 +288,7 @@
             if (user) {
                 // Store current user session
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                
-                // Handle Remember Me
-                const rememberMe = document.getElementById('rememberMe').checked;
-                if (rememberMe) {
-                    saveRememberToken(user);
-                    showSuccess('Login successful! You will be remembered on this device.');
-                } else {
-                    localStorage.removeItem('rememberToken');
-                    showSuccess('Login successful! Redirecting...');
-                }
-                
+                showSuccess('Login successful! Redirecting...');
                 setTimeout(() => {
                     window.location.href = 'customer.html';
                 }, 1500);
@@ -355,73 +345,6 @@
                 showTab('login');
                 document.getElementById('loginEmail').value = email;
             }, 1500);
-        });
-
-        
-        // Remember Me Token Management
-        function generateToken() {
-            return 'token_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        }
-        
-        function saveRememberToken(user) {
-            const token = generateToken();
-            const tokenData = {
-                token: token,
-                userId: user.id,
-                email: user.email,
-                createdAt: Date.now(),
-                expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 days
-            };
-            localStorage.setItem('rememberToken', JSON.stringify(tokenData));
-        }
-        
-        function checkRememberToken() {
-            try {
-                const tokenStr = localStorage.getItem('rememberToken');
-                if (!tokenStr) return null;
-                
-                const tokenData = JSON.parse(tokenStr);
-                
-                // Check if expired
-                if (Date.now() > tokenData.expiresAt) {
-                    localStorage.removeItem('rememberToken');
-                    return null;
-                }
-                
-                return tokenData;
-            } catch (e) {
-                localStorage.removeItem('rememberToken');
-                return null;
-            }
-        }
-        
-        async function tryAutoLogin() {
-            const tokenData = checkRememberToken();
-            if (!tokenData) return false;
-            
-            // Verify user still exists
-            const cloudData = await cloudLoad();
-            const user = cloudData.users?.find(u => u.id === tokenData.userId && u.email === tokenData.email);
-            
-            if (user) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                showSuccess('Welcome back! Automatically signed in.');
-                setTimeout(() => {
-                    window.location.href = 'customer.html';
-                }, 1000);
-                return true;
-            } else {
-                localStorage.removeItem('rememberToken');
-                return false;
-            }
-        }
-        
-        // Check for auto-login when page loads
-        window.addEventListener('load', async function() {
-            const currentUser = localStorage.getItem('currentUser');
-            if (!currentUser) {
-                await tryAutoLogin();
-            }
         });
     </script>
 </body>

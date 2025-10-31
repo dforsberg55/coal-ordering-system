@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Portal | Coal Distribution System</title>
+    <title>🔥 Coal Orders - Customer Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
         }
         .header {
             text-align: center;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
             color: white;
             padding: 30px;
             border-radius: 10px;
@@ -28,7 +28,7 @@
             text-align: center;
         }
         .nav button {
-            background: #3498db;
+            background: #3A3A39;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -37,7 +37,7 @@
             cursor: pointer;
         }
         .nav button.active {
-            background: #2980b9;
+            background: #2A2A29;
         }
         .section {
             display: none;
@@ -99,7 +99,7 @@
         }
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #3A3A39;
         }
         .submit-btn {
             background: #27ae60;
@@ -125,7 +125,7 @@
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
-            border-left: 5px solid #3498db;
+            border-left: 5px solid #3A3A39;
         }
         .order-item.pending {
             border-left-color: #f39c12;
@@ -213,20 +213,21 @@
 </head>
 <body>
     <div class="header">
-        <h1>Coal Distribution System - Customer Portal</h1>
+        <h1>🔥 Coal Orders - Customer Portal</h1>
         <p>Welcome, <span id="customerName">Customer</span>!</p>
         <div style="margin-top: 15px;">
-            <button onclick="goToAdmin()" style="background: #8e44ad; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+            <button onclick="goToAdmin()" style="background: #3A3A39; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
                 ⚙️ Admin Portal
             </button>
-            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Logout
+            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+                🚪 Logout
             </button>
         </div>
     </div>
 
     <div class="nav">
-        <button id="productsBtn" class="active" onclick="showSection('products')">Place Order</button>
-        <button id="ordersBtn" onclick="showSection('orders')">Order History</button>
+        <button id="productsBtn" class="active" onclick="showSection('products')">🛒 Order Coal</button>
+        <button id="ordersBtn" onclick="showSection('orders')">📋 My Orders</button>
     </div>
 
     <div id="products" class="section active">
@@ -298,12 +299,12 @@
                     <input type="text" id="postalCode" placeholder="Postal code">
                 </div>
                 
-                <button type="submit" class="submit-btn">Proceed to Payment</button>
+                <button type="submit" class="submit-btn">💳 Proceed to Payment</button>
             </form>
         </div>
 
         <div id="paymentForm" class="payment-form" style="display: none;">
-            <h3>Payment Summary</h3>
+            <h3>💳 Payment Summary</h3>
             <div id="paymentSummary" class="financial-summary"></div>
             
             <div class="form-group">
@@ -322,20 +323,20 @@
                 </div>
             </div>
             
-            <button onclick="processPayment()" class="submit-btn">Complete Payment</button>
-            <button onclick="cancelOrder()" class="back-btn">Cancel Order</button>
+            <button onclick="processPayment()" class="submit-btn">✅ Complete Payment</button>
+            <button onclick="cancelOrder()" class="back-btn">❌ Cancel Order</button>
         </div>
 
         <div id="orderSuccess" class="success" style="display: none;">
-            <strong>Payment Successful!</strong><br>
+            <strong>✅ Payment Successful!</strong><br>
             Order ID: <span id="newOrderId"></span><br>
-            Your order has been submitted for approval. Check "Order History" to track status.
+            Your order has been submitted for approval. Check "My Orders" to track status.
         </div>
     </div>
 
     <div id="orders" class="section">
         <div class="orders-section">
-            <h3>Order History</h3>
+            <h3>📋 My Orders</h3>
             <div id="ordersList"></div>
         </div>
     </div>
@@ -388,7 +389,6 @@
 
         function logout() {
             localStorage.removeItem('currentUser');
-            localStorage.removeItem('rememberToken');
             window.location.href = 'index.html';
         }
 
@@ -496,12 +496,12 @@
                         
                         <p><strong>Delivery Address:</strong> ${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</p>
                         
-                        ${order.status === 'approved' ? '<p style="color: #27ae60; font-weight: bold;">Approved - Preparing for delivery</p>' : ''}
-                        ${order.status === 'delivered' ? '<p style="color: #2ecc71; font-weight: bold;">Out for delivery</p>' : ''}
+                        ${order.status === 'approved' ? '<p style="color: #27ae60; font-weight: bold;">✅ Approved - Preparing for delivery</p>' : ''}
+                        ${order.status === 'delivered' ? '<p style="color: #2ecc71; font-weight: bold;">🚚 Out for delivery</p>' : ''}
                         ${order.status === 'rejected' ? `
-                            <p style="color: #e74c3c; font-weight: bold;">Order Declined</p>
+                            <p style="color: #e74c3c; font-weight: bold;">❌ Order Declined</p>
                             ${order.rejectionReason ? `<div style="background: #fdf2f2; border: 1px solid #e74c3c; border-radius: 5px; padding: 10px; margin-top: 10px; color: #721c24;"><strong style="color: #e74c3c;">Reason:</strong> ${order.rejectionReason}</div>` : ''}
-                            <p style="color: #e74c3c; font-size: 14px;">Full refund will be processed within 3-5 business days</p>
+                            <p style="color: #e74c3c; font-size: 14px;">💰 Full refund will be processed within 3-5 business days</p>
                         ` : ''}
                     </div>
                 `;
