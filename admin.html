@@ -630,145 +630,6 @@
         }
 
 
-        /* Collapsible order styles */
-        .order-item {
-            border: 1px solid #ddd;
-            padding: 0;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 5px solid #3A3A39;
-            background: white;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .order-summary {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            transition: background-color 0.3s ease;
-        }
-        
-        .order-summary:hover {
-            background: #f8f9fa;
-        }
-        
-        .order-summary-left {
-            flex: 1;
-        }
-        
-        .order-summary-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .order-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 5px;
-        }
-        
-        .order-subtitle {
-            color: #718096;
-            font-size: 0.9rem;
-        }
-        
-        .order-value-badge {
-            background: #3A3A39;
-            color: #F4D03F;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .expand-icon {
-            background: #e2e8f0;
-            color: #4a5568;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-        
-        .expand-icon:hover {
-            background: #cbd5e0;
-        }
-        
-        .expand-icon.expanded {
-            background: #3A3A39;
-            color: #F4D03F;
-            transform: rotate(180deg);
-        }
-        
-        .order-details-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background: #f8f9fa;
-        }
-        
-        .order-details-container.expanded {
-            max-height: 1000px;
-        }
-        
-        .order-details-content {
-            padding: 20px;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .quick-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        
-        .quick-action-btn {
-            background: transparent;
-            border: 1px solid #e2e8f0;
-            color: #4a5568;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quick-action-btn:hover {
-            background: #e2e8f0;
-        }
-        
-        .quick-action-btn.approve {
-            border-color: #27ae60;
-            color: #27ae60;
-        }
-        
-        .quick-action-btn.approve:hover {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .quick-action-btn.reject {
-            border-color: #e74c3c;
-            color: #e74c3c;
-        }
-        
-        .quick-action-btn.reject:hover {
-            background: #e74c3c;
-            color: white;
-        }
-
         /* Line-by-line order info styles */
         .order-info-lines {
             margin: 15px 0;
@@ -841,7 +702,7 @@
             font-style: italic;
         }
         
-        /* Payment control button styles */
+        /* Payment control styles */
         .btn-payment {
             background: #f7fafc;
             color: #4a5568;
@@ -866,6 +727,143 @@
             border-radius: 8px;
             padding: 10px;
             margin-top: 10px;
+        }
+
+        /* Collapsible order styles */
+        .order-summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-summary:hover {
+            background: #f8f9fa;
+        }
+        
+        .order-summary-left {
+            flex: 1;
+        }
+        
+        .order-summary-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .order-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .order-subtitle {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .order-value-badge {
+            background: #3A3A39;
+            color: #F4D03F;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .expand-icon {
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .expand-icon:hover {
+            background: #cbd5e0;
+        }
+        
+        .expand-icon.expanded {
+            background: #3A3A39;
+            color: #F4D03F;
+            transform: rotate(180deg);
+        }
+        
+        .order-details-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .order-details-full.expanded {
+            max-height: 1000px;
+        }
+        
+        .order-details-content {
+            padding: 20px;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .quick-action-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            color: #4a5568;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        .quick-action-btn.approve {
+            border-color: #27ae60;
+            color: #27ae60;
+        }
+        
+        .quick-action-btn.approve:hover {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .quick-action-btn.reject {
+            border-color: #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .quick-action-btn.reject:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        /* Hide original order details by default */
+        .order-details {
+            display: none;
+        }
+        
+        .order-item.expanded .order-details {
+            display: grid;
         }
     </style>
 </head>
@@ -1373,42 +1371,21 @@
                 return;
             }
 
-            customerOrdersList.innerHTML = customerOrders.map(order => {
-                // Calculate order value
-                const pricePerTon = order.pricePerTon || 800;
-                const orderTotal = order.orderTotal || (order.quantity * pricePerTon);
-                const paymentStatus = order.paymentStatus || 'pending';
-                
-                const paymentStatusText = {
-                    'confirmed': '✅ Confirmed',
-                    'pending': '⏳ Pending',
-                    'refunded': '💰 Refunded',
-                    'failed': '❌ Failed'
-                }[paymentStatus] || '❓ Unknown';
-                
-                const paymentStatusClass = {
-                    'confirmed': 'payment-confirmed',
-                    'pending': 'payment-pending',
-                    'refunded': 'payment-refunded',
-                    'failed': 'payment-failed'
-                }[paymentStatus] || 'payment-pending';
-                
-                return `
-                <div class="order-item ${order.status}" id="customer-order-${order.id}">
-                    <!-- Condensed Summary View -->
-                    <div class="order-summary" onclick="toggleOrderDetails('customer-${order.id}')">
+            customerOrdersList.innerHTML = customerOrders.map(order => `
+                <div class="order-item ${order.status}" id="order-${order.id}">
+                    <!-- Condensed Summary -->
+                    <div class="order-summary" onclick="toggleOrderDetails('${order.id}')">
                         <div class="order-summary-left">
                             <div class="order-title">
                                 Order #${order.id} - ${order.product}
                                 <span class="status ${order.status}" style="margin-left: 10px;">${(order.status || 'pending').replace('_', ' ')}</span>
                             </div>
                             <div class="order-subtitle">
-                                ${order.quantity} tons • ${new Date(order.date).toLocaleDateString()}
+                                ${order.customerName || order.contact} • ${order.quantity} tons • ${new Date(order.date).toLocaleDateString()}
                             </div>
                         </div>
                         <div class="order-summary-right">
-                            <span class="payment-status ${paymentStatusClass}" style="font-size: 0.8rem;">${paymentStatusText}</span>
-                            <div class="order-value-badge">R${orderTotal.toLocaleString()}</div>
+                            <div class="order-value-badge">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</div>
                             ${order.status === 'pending' ? `
                                 <div class="quick-actions">
                                     <button class="quick-action-btn approve" onclick="event.stopPropagation(); updateOrderStatus('${order.id}', 'approved')" title="Quick Approve">
@@ -1419,104 +1396,98 @@
                                     </button>
                                 </div>
                             ` : ''}
-                            <button class="expand-icon" id="expand-customer-${order.id}">
-                                ▼
-                            </button>
+                            <button class="expand-icon">▼</button>
                         </div>
                     </div>
                     
-                    <!-- Detailed View (Initially Hidden) -->
-                    <div class="order-details-container" id="details-customer-${order.id}">
+                    <!-- Full Details (Initially Hidden) -->
+                    <div class="order-details-full">
                         <div class="order-details-content">
-                            <div class="order-info-lines">
-                                <div class="info-line">
-                                    <span class="info-label">📦 Product:</span>
-                                    <span class="info-value">${order.product}</span>
+                    <div class="order-header">
+                        <div class="order-id">Order #${order.id}</div>
+                        <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
+                    </div>
+                    
+                    <div class="order-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Product</div>
+                            <div class="detail-value">${order.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Quantity</div>
+                            <div class="detail-value">${order.quantity} tons</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Address</div>
+                            <div class="detail-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Order Date</div>
+                            <div class="detail-value">${new Date(order.date).toLocaleDateString()}</div>
+                        ${order.status === 'rejected' && order.rejectionReason ? `
+                            <div class="detail-item" style="grid-column: 1 / -1;">
+                                <div class="rejection-reason">
+                                    <strong>Rejection Reason:</strong> ${order.rejectionReason}
                                 </div>
-                                <div class="info-line">
-                                    <span class="info-label">📏 Quantity:</span>
-                                    <span class="info-value">${order.quantity} tons</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">💰 Order Value:</span>
-                                    <span class="info-value order-value">R${orderTotal.toLocaleString()}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">💳 Payment Status:</span>
-                                    <span class="payment-status ${paymentStatusClass}">${paymentStatusText}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📍 Address:</span>
-                                    <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📅 Order Date:</span>
-                                    <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
-                                </div>
-                                ${order.status === 'rejected' && order.rejectionReason ? `
-                                <div class="info-line rejection-line">
-                                    <span class="info-label">❌ Rejection Reason:</span>
-                                    <span class="info-value rejection-text">${order.rejectionReason}</span>
-                                </div>
-                                ` : ''}
                             </div>
+                        ` : ''}
 
-                            <div class="action-buttons">
-                                ${order.status === 'pending' ? `
-                                    <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
-                                        ✅ Approve Order
+                        </div>
+                    </div>
+
+
+                            <!-- Payment Control Buttons -->
+                            <div class="payment-controls">
+                                <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                                <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'confirmed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'confirmed')">
+                                        ✅ Confirm
                                     </button>
-                                    <button class="btn btn-reject" onclick="openRejectOrderModal('${order.id}')">
-                                        ❌ Reject Order
+                                    <button class="btn btn-payment ${(!order.paymentStatus || order.paymentStatus === 'pending') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'pending')">
+                                        ⏳ Pending
                                     </button>
-                                ` : ''}
-                                ${order.status === 'approved' ? `
-                                    <button class="btn btn-deliver" onclick="updateOrderStatus('${order.id}', 'delivered')">
-                                        🚚 Mark as Sent for Delivery
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'refunded') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'refunded')">
+                                        💰 Refund
                                     </button>
-                                ` : ''}
-                                ${order.status === 'delivered' ? `
-                                    <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
-                                ` : ''}
-                                
-                                <!-- Payment Control Buttons -->
-                                <div class="payment-controls">
-                                    <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
-                                    <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
-                                        <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'confirmed')">
-                                            ✅ Confirm
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'pending')">
-                                            ⏳ Pending
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'refunded')">
-                                            💰 Refund
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'failed')">
-                                            ❌ Failed
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <!-- Order Management Buttons -->
-                                <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
-                                    <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
-                                        ✏️ Edit Order
-                                    </button>
-                                    <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
-                                        🗑️ Delete
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'failed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'failed')">
+                                        ❌ Failed
                                     </button>
                                 </div>
                             </div>
+                            
+                    <div class="action-buttons">
+                        ${order.status === 'pending' ? `
+                            <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
+                                ✅ Approve Order
+                            </button>
+                            <button class="btn btn-reject" onclick="openRejectOrderModal('${order.id}')">
+                                ❌ Reject Order
+                            </button>
+                        ` : ''}
+                        ${order.status === 'approved' ? `
+                            <button class="btn btn-deliver" onclick="updateOrderStatus('${order.id}', 'delivered')">
+                                🚚 Mark as Sent for Delivery
+                            </button>
+                        ` : ''}
+                        ${order.status === 'delivered' ? `
+                            <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
+                        ` : ''}
+                        <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
+                            ✏️ Edit Order
+                        </button>
+                        <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
+                            🗑️ Delete
+                        </button>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>
-                `;
-            }).join('');
+            `).join('');
         }
 
         function goHome() {
@@ -1559,29 +1530,9 @@
                 return;
             }
 
-            ordersList.innerHTML = filteredOrders.map(order => {
-                // Calculate order value
-                const pricePerTon = order.pricePerTon || 800;
-                const orderTotal = order.orderTotal || (order.quantity * pricePerTon);
-                const paymentStatus = order.paymentStatus || 'pending';
-                
-                const paymentStatusText = {
-                    'confirmed': '✅ Confirmed',
-                    'pending': '⏳ Pending',
-                    'refunded': '💰 Refunded',
-                    'failed': '❌ Failed'
-                }[paymentStatus] || '❓ Unknown';
-                
-                const paymentStatusClass = {
-                    'confirmed': 'payment-confirmed',
-                    'pending': 'payment-pending',
-                    'refunded': 'payment-refunded',
-                    'failed': 'payment-failed'
-                }[paymentStatus] || 'payment-pending';
-                
-                return `
+            ordersList.innerHTML = filteredOrders.map(order => `
                 <div class="order-item ${order.status}" id="order-${order.id}">
-                    <!-- Condensed Summary View -->
+                    <!-- Condensed Summary -->
                     <div class="order-summary" onclick="toggleOrderDetails('${order.id}')">
                         <div class="order-summary-left">
                             <div class="order-title">
@@ -1593,8 +1544,7 @@
                             </div>
                         </div>
                         <div class="order-summary-right">
-                            <span class="payment-status ${paymentStatusClass}" style="font-size: 0.8rem;">${paymentStatusText}</span>
-                            <div class="order-value-badge">R${orderTotal.toLocaleString()}</div>
+                            <div class="order-value-badge">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</div>
                             ${order.status === 'pending' ? `
                                 <div class="quick-actions">
                                     <button class="quick-action-btn approve" onclick="event.stopPropagation(); updateOrderStatus('${order.id}', 'approved')" title="Quick Approve">
@@ -1605,115 +1555,116 @@
                                     </button>
                                 </div>
                             ` : ''}
-                            <button class="expand-icon" id="expand-${order.id}">
-                                ▼
-                            </button>
+                            <button class="expand-icon">▼</button>
                         </div>
                     </div>
                     
-                    <!-- Detailed View (Initially Hidden) -->
-                    <div class="order-details-container" id="details-${order.id}">
+                    <!-- Full Details (Initially Hidden) -->
+                    <div class="order-details-full">
                         <div class="order-details-content">
-                            <div class="order-info-lines">
-                                <div class="info-line">
-                                    <span class="info-label">📦 Product:</span>
-                                    <span class="info-value">${order.product}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📏 Quantity:</span>
-                                    <span class="info-value">${order.quantity} tons</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">💰 Order Value:</span>
-                                    <span class="info-value order-value">R${orderTotal.toLocaleString()}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">💳 Payment Status:</span>
-                                    <span class="payment-status ${paymentStatusClass}">${paymentStatusText}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">👤 Customer:</span>
-                                    <span class="info-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📧 Email:</span>
-                                    <span class="info-value">${order.email}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📞 Phone:</span>
-                                    <span class="info-value">${order.phone}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📍 Address:</span>
-                                    <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="info-label">📅 Order Date:</span>
-                                    <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
-                                </div>
-                                ${order.status === 'rejected' && order.rejectionReason ? `
-                                <div class="info-line rejection-line">
-                                    <span class="info-label">❌ Rejection Reason:</span>
-                                    <span class="info-value rejection-text">${order.rejectionReason}</span>
-                                </div>
-                                ` : ''}
+                    <div class="order-header">
+                        <div class="order-id">Order #${order.id}</div>
+                        <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
+                    </div>
+                    
+                    <div class="order-info-lines">
+                            <div class="info-line">
+                                <span class="info-label">📦 Product:</span>
+                                <span class="info-value">${order.product}</span>
                             </div>
+                            <div class="info-line">
+                                <span class="info-label">📏 Quantity:</span>
+                                <span class="info-value">${order.quantity} tons</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">💰 Order Value:</span>
+                                <span class="info-value order-value">R${(order.orderTotal || (order.quantity * (order.pricePerTon || 800))).toLocaleString()}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">💳 Payment Status:</span>
+                                <span class="payment-status ${(order.paymentStatus === 'confirmed') ? 'payment-confirmed' : (order.paymentStatus === 'refunded') ? 'payment-refunded' : (order.paymentStatus === 'failed') ? 'payment-failed' : 'payment-pending'}">${(order.paymentStatus === 'confirmed') ? '✅ Payment Confirmed' : (order.paymentStatus === 'refunded') ? '💰 Payment Refunded' : (order.paymentStatus === 'failed') ? '❌ Payment Failed' : '⏳ Payment Pending'}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">👤 Customer:</span>
+                                <span class="info-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📧 Email:</span>
+                                <span class="info-value">${order.email}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📞 Phone:</span>
+                                <span class="info-value">${order.phone}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📍 Address:</span>
+                                <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
+                            </div>
+                            <div class="info-line">
+                                <span class="info-label">📅 Order Date:</span>
+                                <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
+                            </div>
+                            ${order.status === 'rejected' && order.rejectionReason ? `
+                            <div class="info-line rejection-line">
+                                <span class="info-label">❌ Rejection Reason:</span>
+                                <span class="info-value rejection-text">${order.rejectionReason}</span>
+                            </div>
+                            ` : ''}
+                        </div>
 
-                            <div class="action-buttons">
-                                ${order.status === 'pending' ? `
-                                    <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
-                                        ✅ Approve Order
+
+                            <!-- Payment Control Buttons -->
+                            <div class="payment-controls">
+                                <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                                <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'confirmed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'confirmed')">
+                                        ✅ Confirm
                                     </button>
-                                    <button class="btn btn-reject" onclick="openRejectOrderModal('${order.id}')">
-                                        ❌ Reject Order
+                                    <button class="btn btn-payment ${(!order.paymentStatus || order.paymentStatus === 'pending') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'pending')">
+                                        ⏳ Pending
                                     </button>
-                                ` : ''}
-                                ${order.status === 'approved' ? `
-                                    <button class="btn btn-deliver" onclick="updateOrderStatus('${order.id}', 'delivered')">
-                                        🚚 Mark as Sent for Delivery
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'refunded') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'refunded')">
+                                        💰 Refund
                                     </button>
-                                ` : ''}
-                                ${order.status === 'delivered' ? `
-                                    <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
-                                ` : ''}
-                                
-                                <!-- Payment Control Buttons -->
-                                <div class="payment-controls">
-                                    <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
-                                    <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
-                                        <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'confirmed')">
-                                            ✅ Confirm
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'pending')">
-                                            ⏳ Pending
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'refunded')">
-                                            💰 Refund
-                                        </button>
-                                        <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
-                                                onclick="updatePaymentStatus('${order.id}', 'failed')">
-                                            ❌ Failed
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <!-- Order Management Buttons -->
-                                <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
-                                    <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
-                                        ✏️ Edit Order
-                                    </button>
-                                    <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
-                                        🗑️ Delete
+                                    <button class="btn btn-payment ${(order.paymentStatus === 'failed') ? 'active' : ''}" 
+                                            onclick="updatePaymentStatus('${order.id}', 'failed')">
+                                        ❌ Failed
                                     </button>
                                 </div>
                             </div>
+                            
+                    <div class="action-buttons">
+                        ${order.status === 'pending' ? `
+                            <button class="btn btn-approve" onclick="updateOrderStatus('${order.id}', 'approved')">
+                                ✅ Approve Order
+                            </button>
+                            <button class="btn btn-reject" onclick="openRejectOrderModal('${order.id}')">
+                                ❌ Reject Order
+                            </button>
+                        ` : ''}
+                        ${order.status === 'approved' ? `
+                            <button class="btn btn-deliver" onclick="updateOrderStatus('${order.id}', 'delivered')">
+                                🚚 Mark as Sent for Delivery
+                            </button>
+                        ` : ''}
+                        ${order.status === 'delivered' ? `
+                            <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
+                        ` : ''}
+                        <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
+                            ✏️ Edit Order
+                        </button>
+                        <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
+                            🗑️ Delete
+                        </button>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>
-                `;
+            `).join('');
         }
 
         async function updatePaymentStatus(orderId, newPaymentStatus) {
@@ -1964,6 +1915,26 @@
             
             updateStats();
             showSection('orders');
+        }
+
+
+        // Toggle order details function
+        function toggleOrderDetails(orderId) {
+            const orderItem = document.getElementById(`order-${orderId}`);
+            const detailsContainer = orderItem.querySelector('.order-details-full');
+            const expandIcon = orderItem.querySelector('.expand-icon');
+            
+            if (detailsContainer.classList.contains('expanded')) {
+                // Collapse
+                detailsContainer.classList.remove('expanded');
+                expandIcon.classList.remove('expanded');
+                expandIcon.textContent = '▼';
+            } else {
+                // Expand
+                detailsContainer.classList.add('expanded');
+                expandIcon.classList.add('expanded');
+                expandIcon.textContent = '▲';
+            }
         }
 
         initializeAdmin();
@@ -2343,24 +2314,6 @@
                 console.log('⚠️ Auto-refresh error:', error);
             }
         }, 5000); // Reduced to 5 seconds since it's now smarter
-
-        // Toggle order details function
-        function toggleOrderDetails(orderId) {
-            const detailsContainer = document.getElementById(`details-${orderId}`);
-            const expandIcon = document.getElementById(`expand-${orderId}`);
-            
-            if (detailsContainer.classList.contains('expanded')) {
-                // Collapse
-                detailsContainer.classList.remove('expanded');
-                expandIcon.classList.remove('expanded');
-                expandIcon.textContent = '▼';
-            } else {
-                // Expand
-                detailsContainer.classList.add('expanded');
-                expandIcon.classList.add('expanded');
-                expandIcon.textContent = '▲';
-            }
-        }
     </script>
 </body>
 </html>
