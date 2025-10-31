@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 Coal Orders - Admin Panel</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -702,16 +701,13 @@
             font-style: italic;
         }
         
-        /* Remove old grid layout */
-        .order-details {
-            display: none;
-        }
-
         /* Payment control button styles */
         .btn-payment {
             background: #f7fafc;
             color: #4a5568;
             border: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            padding: 4px 8px;
         }
         
         .btn-payment:hover {
@@ -729,22 +725,22 @@
             background: #f8f9fa;
             border-radius: 8px;
             padding: 10px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">Coal<span>Pro</span> <span style="font-size: 1rem; font-weight: 500;">Admin Panel</span></div>
-            <p>Manage and process customer orders</p>
-            <div class="header-buttons">
-                <button onclick="goToCustomer()" class="btn">👥 Customer View</button>
-                <button onclick="goHome()" class="btn btn-secondary">🏠 Back to Home</button>
-            </div>
+    <div class="header">
+        <h1>🔥 Coal Orders - Admin Panel</h1>
+        <p>Manage and process customer orders</p>
+        <div style="margin-top: 15px;">
+            <button onclick="goToCustomer()" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                👥 Customer View
+            </button>
+            <button onclick="goHome()" style="background: #95a5a6; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+                🏠 Back to Home
+            </button>
         </div>
-    </header>
-
-    <div class="container">
     </div>
 
     <div class="stats">
@@ -1106,7 +1102,7 @@
         </div>
     </div>
 
-    <script src="url-sync.js?v=10"></script>
+    <script src="url-sync.js?v=9"></script>
     <script>
         let orders = [];
         let currentFilter = 'all';
@@ -1316,27 +1312,23 @@
                         ` : ''}
                         
                         <!-- Payment Control Buttons -->
-                        <div class="payment-controls" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
+                        <div class="payment-controls">
                             <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
                             <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
                                 <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')">
                                     ✅ Confirm
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'pending')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'pending')">
                                     ⏳ Pending
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'refunded')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'refunded')">
                                     💰 Refund
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'failed')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'failed')">
                                     ❌ Failed
                                 </button>
                             </div>
@@ -1353,7 +1345,8 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function goHome() {
@@ -1487,27 +1480,23 @@
                         ` : ''}
                         
                         <!-- Payment Control Buttons -->
-                        <div class="payment-controls" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
+                        <div class="payment-controls">
                             <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
                             <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
                                 <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')">
                                     ✅ Confirm
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'pending')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'pending')">
                                     ⏳ Pending
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'refunded')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'refunded')">
                                     💰 Refund
                                 </button>
                                 <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
-                                        onclick="updatePaymentStatus('${order.id}', 'failed')"
-                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                        onclick="updatePaymentStatus('${order.id}', 'failed')">
                                     ❌ Failed
                                 </button>
                             </div>
@@ -1524,7 +1513,8 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         async function updatePaymentStatus(orderId, newPaymentStatus) {
@@ -1927,37 +1917,6 @@
             alert(`Customer "${customer.contact}" and ${customerOrders.length} associated order(s) have been deleted.`);
         }
 
-        // Debug function to check order data
-        function debugOrderRevenue() {
-            console.log('🔍 DEBUG: All Orders Revenue Breakdown');
-            console.log('==========================================');
-            
-            let debugTotal = 0;
-            orders.forEach((order, index) => {
-                console.log(`\n📋 Order ${index + 1}:`);
-                console.log(`   ID: ${order.id}`);
-                console.log(`   Product: ${order.product}`);
-                console.log(`   Quantity: ${order.quantity} tons`);
-                console.log(`   Status: ${order.status}`);
-                console.log(`   orderTotal: ${order.orderTotal}`);
-                console.log(`   pricePerTon: ${order.pricePerTon}`);
-                
-                if (order.status === 'delivered' || order.status === 'approved' || order.status === 'pending') {
-                    let revenue = order.orderTotal || (order.quantity * (order.pricePerTon || 800));
-                    debugTotal += revenue;
-                    console.log(`   💰 Revenue: R${revenue.toLocaleString()} (INCLUDED)`);
-                } else {
-                    console.log(`   ❌ Revenue: R0 (EXCLUDED - status: ${order.status})`);
-                }
-            });
-            
-            console.log(`\n💰 TOTAL CALCULATED: R${debugTotal.toLocaleString()}`);
-            console.log(`📊 Expected: R20,000 (R4,000 + R16,000)`);
-            console.log(`❓ Difference: R${Math.abs(debugTotal - 20000).toLocaleString()}`);
-            
-            return debugTotal;
-        }
-
         // Analytics functions
         async function loadAnalytics() {
             const cloudData = await window.CloudSync.loadData();
@@ -1978,20 +1937,14 @@
             const currentMonth = new Date().getMonth();
             const currentYear = new Date().getFullYear();
 
-            console.log('🔍 Analytics Debug - Processing orders:', orders.length);
-
             orders.forEach(order => {
                 if (order.status === 'delivered' || order.status === 'approved' || order.status === 'pending') {
                     // Use actual order total if available, otherwise calculate from price per ton
                     let revenue = 0;
-                    let calculationMethod = '';
-                    
-                    if (order.orderTotal && order.orderTotal > 0) {
+                    if (order.orderTotal) {
                         revenue = order.orderTotal;
-                        calculationMethod = 'orderTotal';
-                    } else if (order.pricePerTon && order.pricePerTon > 0) {
+                    } else if (order.pricePerTon) {
                         revenue = order.quantity * order.pricePerTon;
-                        calculationMethod = 'pricePerTon';
                     } else {
                         // Fallback to default pricing
                         const defaultPrices = {
@@ -2002,11 +1955,7 @@
                         };
                         const price = defaultPrices[order.product] || 800;
                         revenue = order.quantity * price;
-                        calculationMethod = 'fallback';
                     }
-                    
-                    console.log(`📊 Order #${order.id}: R${revenue} (${calculationMethod}) - Status: ${order.status}`);
-                    console.log(`   - orderTotal: ${order.orderTotal}, pricePerTon: ${order.pricePerTon}, quantity: ${order.quantity}`);
                     
                     totalRevenue += revenue;
                     revenueOrderCount++;
@@ -2017,9 +1966,6 @@
                     }
                 }
             });
-
-            console.log(`💰 Total Revenue Calculated: R${totalRevenue.toLocaleString()}`);
-            console.log(`📅 Monthly Revenue: R${monthlyRevenue.toLocaleString()}`);
 
             const avgOrderValue = revenueOrderCount > 0 ? totalRevenue / revenueOrderCount : 0;
             
