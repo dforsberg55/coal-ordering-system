@@ -394,47 +394,490 @@
         .portal-access .portal-selection {
             margin-top: 50px;
         }
-        /* About Section */
+
+        /* Enhanced About Section */
         .about {
             background: white;
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .about h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 30px;
+            text-align: center;
         }
         
-        .about p {
+        .about-intro {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Timeline Styles */
+        .story-timeline {
+            position: relative;
+            margin: 60px 0;
+        }
+        
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3A3A39, #F4D03F);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 120px;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            color: #F4D03F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
             font-size: 1.1rem;
-            color: #718096;
-            margin-bottom: 25px;
-            line-height: 1.7;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #F4D03F;
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 15px solid #f8f9fa;
+        }
+        
+        .timeline-content h4 {
+            color: #3A3A39;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-content p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Philosophy and Today Sections */
+        .company-philosophy,
+        .company-today {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 50px 0;
+            border: 2px solid #E2E8F0;
+        }
+        
+        .company-philosophy h3,
+        .company-today h3 {
+            color: #3A3A39;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .company-philosophy p,
+        .company-today p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        /* Enhanced Values Section */
         .about-values {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin: 50px 0;
         }
         
         .value-item {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A3A39, #F4D03F);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .value-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
         }
         
         .value-item h4 {
             color: #3A3A39;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .value-item p {
             color: #718096;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .story-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                padding-left: 80px;
+            }
+            
+            .timeline-year {
+                width: 60px;
+                height: 60px;
+                font-size: 0.9rem;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+            
+            .timeline-content::before {
+                left: -10px;
+                border-right-width: 10px;
+            }
+            
+            .about h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-intro {
+                font-size: 1.1rem;
+            }
+        }
+
+
+        /* Contact Section Styles */
+        .contact-section {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A3A39, #F4D03F);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+        
+        .contact-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-regions h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .regions-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .region-tag {
+            background: #f8f9fa;
+            color: #3A3A39;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #E2E8F0;
+        }
+        
+        .contact-person {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .person-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F4D03F, #E6C84F);
+            color: #3A3A39;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .person-info h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .person-credentials {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-icon-small {
+            font-size: 0.9rem;
+        }
+        
+        .contact-item a {
+            color: #3A3A39;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: #F4D03F;
+        }
+        
+        .btn-contact {
+            background: #3A3A39;
+            color: #F4D03F;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .btn-contact:hover {
+            background: #2A2A29;
+        }
+        
+        /* General Contact Section */
+        .general-contact {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 2px solid #E2E8F0;
+        }
+        
+        .general-contact h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .general-contact > p {
+            color: #718096;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .general-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .general-contact-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        
+        .general-contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+        
+        .general-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.3rem;
+        }
+        
+        .general-contact-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .general-contact-item p {
+            color: #718096;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .general-contact-item a {
+            color: #3A3A39;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .general-contact-item a:hover {
+            color: #F4D03F;
+        }
+        
+        @media (max-width: 768px) {
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .contact-person {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .person-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .general-contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -523,28 +966,28 @@
                     <h3>Property Division</h3>
                     <p>Full-service property development, management, and investment solutions for commercial and residential projects.</p>
                     <ul class="division-services">
-                        <li>Property Development</li>
-                        <li>Project Management</li>
-                        <li>Investment Advisory</li>
-                        <li>Facility Management</li>
+                        <li>Real Estate Listings</li>
+                        <li>Capital Investment</li>
+                        <li>Development Projects</li>
+                        <li>Property Management</li>
                     </ul>
                     <div class="division-cta">
-                        <a href="#" class="btn btn-outline">Learn More</a>
+                        <a href="property-division.html" class="btn btn-outline">View Services</a>
                     </div>
                 </div>
 
                 <div class="division-card agri">
                     <div class="division-icon">🌾</div>
                     <h3>Agriculture Division</h3>
-                    <p>Modern agricultural solutions, farming technology, and sustainable food production systems.</p>
+                    <p>Specialized poultry operations with state-of-the-art broiler facilities producing over 540,000 chickens per cycle.</p>
                     <ul class="division-services">
-                        <li>Crop Production</li>
-                        <li>Agricultural Technology</li>
-                        <li>Supply Chain Management</li>
-                        <li>Sustainable Farming</li>
+                        <li>Broiler Production</li>
+                        <li>Poultry Operations</li>
+                        <li>Modern Farming Technology</li>
+                        <li>Quality Assurance</li>
                     </ul>
                     <div class="division-cta">
-                        <a href="#" class="btn btn-outline">Learn More</a>
+                        <a href="agri-division.html" class="btn btn-outline">View Operations</a>
                     </div>
                 </div>
             </div>
@@ -620,20 +1063,232 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>About CoalPro</h2>
-                    <p>With over 25 years of experience, CoalPro has evolved from a coal distribution company into a comprehensive multi-division solutions provider. Our three specialized divisions work together to deliver integrated solutions across Energy, Property Development, and Agriculture sectors.</p>
-                    <p>We pride ourselves on innovation, reliability, and sustainable business practices that benefit our clients, communities, and the environment.</p>
+                    <p class="about-intro">From humble beginnings in the coal fields of Mpumalanga to becoming a diversified multi-division powerhouse, CoalPro's journey spans over 25 years of innovation, growth, and strategic expansion across South Africa's most vital industries.</p>
+                    
+                    <div class="story-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1999</div>
+                            <div class="timeline-content">
+                                <h4>The Foundation</h4>
+                                <p>CoalPro began as a specialized coal supplier in Witbank, Mpumalanga, serving local mills, distilleries, refineries, nurseries, and farms. Our core business was built on a simple promise: deliver high-quality coal with exceptional service. We established our own coal processing facility on-site, ensuring complete control over quality and supply chain efficiency.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2005</div>
+                            <div class="timeline-content">
+                                <h4>Energy Division Expansion</h4>
+                                <p>Recognizing the growing demand for diverse energy solutions, we expanded beyond coal to include premium diesel supply. Our Energy Division was formalized, offering A-Grade washed coal and 100% clean diesel to industrial clients across South Africa. This expansion allowed us to become a comprehensive energy solutions provider, working closely with clients to optimize efficiency and ensure timely delivery.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2012</div>
+                            <div class="timeline-content">
+                                <h4>Property Division Launch</h4>
+                                <p>Success in energy led to strategic diversification. We established our Property Division, initially focusing on acquiring and developing properties near our energy operations. This evolved into a full-service property company encompassing real estate listings, capital investment services, turn-key project solutions, and residential development. Our expertise in managing complex supply chains translated perfectly to property development and management.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-content">
+                                <h4>Agriculture Division Birth</h4>
+                                <p>Leveraging our deep relationships with farms and agricultural clients from our coal supply days, we identified an opportunity in the poultry sector. Our Agriculture Division was born with the establishment of CMD Broiler Site 1, featuring 10 broiler houses with a capacity of 300,000 chicks per cycle. This marked our entry into food production, applying the same principles of quality, efficiency, and reliability that built our energy business.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-content">
+                                <h4>Modern Expansion</h4>
+                                <p>Our commitment to growth culminated in the launch of CMD Broiler Site 2, adding 8 state-of-the-art broiler houses with 240,000 chickens per cycle capacity. This expansion represents our vision for the future: integrated operations across energy, property, and agriculture that support South Africa's economic development while maintaining our founding principles of excellence and reliability.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-philosophy">
+                        <h3>Our Philosophy</h3>
+                        <p>What started as a coal supply business has evolved into something much greater. We discovered that the principles that made us successful in energy – understanding our clients' needs, ensuring quality at every step, and building lasting relationships – apply equally to property development and agriculture. Today, CoalPro represents the convergence of three essential sectors that power South Africa's economy.</p>
+                        
+                        <p>Our three divisions don't just coexist; they synergize. Our property expertise helps us develop optimal facilities for our agricultural operations. Our energy knowledge ensures efficient power solutions for our properties. Our agricultural understanding helps us serve farming clients better across all divisions. This integrated approach sets us apart in each sector we serve.</p>
+                    </div>
+                    
                     <div class="about-values">
                         <div class="value-item">
-                            <h4>Innovation</h4>
-                            <p>Cutting-edge solutions for modern challenges</p>
+                            <h4>Heritage & Innovation</h4>
+                            <p>25+ years of industry expertise combined with cutting-edge solutions for modern challenges</p>
                         </div>
                         <div class="value-item">
-                            <h4>Reliability</h4>
-                            <p>Consistent delivery and dependable partnerships</p>
+                            <h4>Integrated Excellence</h4>
+                            <p>Synergistic operations across energy, property, and agriculture for comprehensive solutions</p>
                         </div>
                         <div class="value-item">
-                            <h4>Sustainability</h4>
-                            <p>Environmentally responsible business practices</p>
+                            <h4>Sustainable Growth</h4>
+                            <p>Responsible business practices that benefit clients, communities, and the environment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="company-today">
+                        <h3>CoalPro Today</h3>
+                        <p>From our origins in the coal fields of Witbank to our modern multi-division operations, CoalPro has grown into a trusted partner across South Africa's most vital industries. We continue to process coal at our Mpumalanga facility, supply premium diesel to industrial clients, develop and manage properties, and operate state-of-the-art poultry facilities producing over 540,000 chickens per cycle.</p>
+                        
+                        <p>Our success is measured not just in growth, but in the lasting relationships we've built with clients who have trusted us for decades. As we look to the future, we remain committed to the values that built our company: quality, reliability, innovation, and an unwavering focus on our clients' success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Our Regional Teams</h2>
+                <p>Connect with our experienced regional representatives across South Africa for personalized service and expert consultation.</p>
+            </div>
+
+            <div class="contacts-grid">
+                <!-- Gauteng, Eastern Cape & Western Cape -->
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-regions">
+                            <h3>Gauteng, Eastern Cape & Western Cape</h3>
+                            <div class="regions-list">
+                                <span class="region-tag">Gauteng</span>
+                                <span class="region-tag">Eastern Cape</span>
+                                <span class="region-tag">Western Cape</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-person">
+                        <div class="person-avatar">OF</div>
+                        <div class="person-info">
+                            <h4>Oscar FakeSurname</h4>
+                            <p class="person-credentials">BSc QS, 20+ years industry experience</p>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">📞</span>
+                                    <a href="tel:0725554444">072 555 4444</a>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">✉️</span>
+                                    <a href="mailto:o.fake.email@coal.com">o.fake.email@coal.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <a href="mailto:o.fake.email@coal.com" class="btn btn-contact">Contact Oscar</a>
+                    </div>
+                </div>
+
+                <!-- KwaZulu-Natal -->
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-regions">
+                            <h3>KwaZulu-Natal</h3>
+                            <div class="regions-list">
+                                <span class="region-tag">KwaZulu-Natal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-person">
+                        <div class="person-avatar">AF</div>
+                        <div class="person-info">
+                            <h4>Adino FakeSurname</h4>
+                            <p class="person-credentials">BSc, 10+ years industry experience</p>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">📞</span>
+                                    <a href="tel:0764449999">076 444 9999</a>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">✉️</span>
+                                    <a href="mailto:a.fake.email@coal.com">a.fake.email@coal.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <a href="mailto:a.fake.email@coal.com" class="btn btn-contact">Contact Adino</a>
+                    </div>
+                </div>
+
+                <!-- Mpumalanga, Limpopo, North West -->
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-regions">
+                            <h3>Mpumalanga, Limpopo & North West</h3>
+                            <div class="regions-list">
+                                <span class="region-tag">Mpumalanga</span>
+                                <span class="region-tag">Limpopo</span>
+                                <span class="region-tag">North West</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-person">
+                        <div class="person-avatar">HF</div>
+                        <div class="person-info">
+                            <h4>Handre FakeSurname</h4>
+                            <p class="person-credentials">BEng, 20+ years industry experience</p>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">📞</span>
+                                    <a href="tel:0834448888">083 444 8888</a>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon-small">✉️</span>
+                                    <a href="mailto:h.fake.email@coal.com">h.fake.email@coal.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <a href="mailto:h.fake.email@coal.com" class="btn btn-contact">Contact Handre</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Contact Information -->
+            <div class="general-contact">
+                <div class="general-contact-content">
+                    <h3>General Inquiries</h3>
+                    <p>For general information about our services across all divisions, or if you're unsure which regional contact to reach out to, please use our main contact channels.</p>
+                    
+                    <div class="general-contact-grid">
+                        <div class="general-contact-item">
+                            <div class="general-icon">🏢</div>
+                            <h4>Head Office</h4>
+                            <p>CoalPro Multi-Division Solutions<br>
+                            Johannesburg, South Africa</p>
+                        </div>
+                        <div class="general-contact-item">
+                            <div class="general-icon">📧</div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@coalpro.co.za">info@coalpro.co.za</a><br>
+                            <a href="mailto:sales@coalpro.co.za">sales@coalpro.co.za</a></p>
+                        </div>
+                        <div class="general-contact-item">
+                            <div class="general-icon">📞</div>
+                            <h4>Phone</h4>
+                            <p>+27 11 123 4567<br>
+                            +27 11 765 4321</p>
+                        </div>
+                        <div class="general-contact-item">
+                            <div class="general-icon">🕒</div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 8:00 - 17:00<br>
+                            Saturday: 8:00 - 13:00</p>
                         </div>
                     </div>
                 </div>

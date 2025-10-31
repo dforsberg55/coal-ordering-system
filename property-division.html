@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Division | CoalPro - Real Estate, Capital & Development Solutions</title>
+    <meta name="description" content="Comprehensive property solutions including real estate listings, capital investment, development projects, and property management from CoalPro's Property Division.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Grey banner header */
+        .header {
+            background: #3A3A39;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #F4D03F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E2E8F0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F4D03F;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(58, 58, 57, 0.95), rgba(42, 42, 41, 0.95)),
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3Cpattern id='property-pattern' x='0' y='0' width='80' height='80' patternUnits='userSpaceOnUse'%3E%3Crect x='10' y='10' width='15' height='15' fill='%23F4D03F' opacity='0.1'/%3E%3Crect x='45' y='45' width='15' height='15' fill='%23F4D03F' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='1200' height='600' fill='url(%23property-pattern)'/%3E%3C/svg%3E");
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #E2E8F0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-nav {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-nav a {
+            color: #3A3A39;
+            text-decoration: none;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #F4D03F;
+        }
+
+        /* Overview Section */
+        .overview-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Segments Grid */
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .segment-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .segment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3A3A39, #F4D03F);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .segment-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .segment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #F4D03F;
+        }
+
+        .segment-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .segment-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .segment-card p {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: #3A3A39;
+            color: #F4D03F;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(58, 58, 57, 0.3);
+            background: #2A2A29;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #3A3A39;
+            border: 2px solid #3A3A39;
+        }
+
+        .btn-outline:hover {
+            background: #3A3A39;
+            color: #F4D03F;
+        }
+
+        /* Detailed Segments Section */
+        .detailed-segments {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .segment-detail {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+
+        .segment-detail:hover {
+            border-color: #F4D03F;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .segment-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .segment-detail-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3A3A39, #2A2A29);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+        }
+
+        .segment-detail h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .segment-detail p {
+            color: #718096;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .segment-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #F4D03F;
+        }
+
+        .feature-item h4 {
+            color: #3A3A39;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #3A3A39;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F4D03F;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #E2E8F0;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            min-width: 180px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2A2A29;
+            text-align: center;
+            padding: 40px 0;
+            color: #E2E8F0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .segments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .segment-detail-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .segment-detail-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grey banner header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Coal<span>Pro</span></a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html#divisions">Our Divisions</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="login.html">Customer Portal</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a> / <a href="index.html#divisions">Divisions</a> / Property Division
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Property Division</h1>
+            <p>Comprehensive property solutions for developing, funding, acquiring, and selling properties. From real estate listings to capital investment and development projects.</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Property Services</h2>
+                <p>We provide end-to-end property solutions across four specialized segments, each designed to meet specific market needs and investment objectives.</p>
+            </div>
+
+            <div class="segments-grid">
+                <div class="segment-card">
+                    <div class="segment-icon">🏠</div>
+                    <h3>Real Estate</h3>
+                    <p>Comprehensive property listings and real estate services for buyers, sellers, and investors.</p>
+                    <a href="#real-estate" class="btn btn-outline">View Listings</a>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-icon">💼</div>
+                    <h3>Capital</h3>
+                    <p>Investment services providing capital solutions to private companies meeting our investment criteria.</p>
+                    <a href="#capital" class="btn btn-outline">Learn More</a>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-icon">🏗️</div>
+                    <h3>Projects</h3>
+                    <p>Turn-key solution company providing engineering, design, modeling, and project management expertise.</p>
+                    <a href="#projects" class="btn btn-outline">Our Services</a>
+                </div>
+
+                <div class="segment-card">
+                    <div class="segment-icon">🏘️</div>
+                    <h3>Development</h3>
+                    <p>Residential development specializing in medium-cost housing for the everyday South African.</p>
+                    <a href="#development" class="btn btn-outline">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Segments Section -->
+    <section class="detailed-segments">
+        <div class="container">
+            <!-- Real Estate Segment -->
+            <div class="segment-detail" id="real-estate">
+                <div class="segment-detail-header">
+                    <div class="segment-detail-icon">🏠</div>
+                    <h3>Real Estate</h3>
+                </div>
+                <p>Our Real Estate segment provides comprehensive property listings and services for residential and commercial properties. We connect buyers, sellers, and investors with quality properties that meet their specific needs and budget requirements.</p>
+                
+                <div class="segment-features">
+                    <div class="feature-item">
+                        <h4>Property Listings</h4>
+                        <p>Extensive database of residential and commercial properties</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Market Analysis</h4>
+                        <p>Professional property valuations and market insights</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Investment Advisory</h4>
+                        <p>Expert guidance for property investment decisions</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Transaction Support</h4>
+                        <p>End-to-end support for buying and selling processes</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">Browse Properties</a>
+            </div>
+
+            <!-- Capital Segment -->
+            <div class="segment-detail" id="capital">
+                <div class="segment-detail-header">
+                    <div class="segment-detail-icon">💼</div>
+                    <h3>Capital</h3>
+                </div>
+                <p>Our Capital segment is an investment service that provides capital solutions to private companies across a range of industries. We prefer to provide capital to companies with strong business models, low-risk structures, and capable dynamic management teams.</p>
+                
+                <div class="segment-features">
+                    <div class="feature-item">
+                        <h4>Investment Criteria</h4>
+                        <p>Focus on strong business models and low-risk structures</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Due Diligence</h4>
+                        <p>Comprehensive analysis of management and business potential</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Capital Solutions</h4>
+                        <p>Flexible funding options tailored to business needs</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Strategic Support</h4>
+                        <p>Ongoing guidance and strategic business support</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">Investment Opportunities</a>
+            </div>
+
+            <!-- Projects Segment -->
+            <div class="segment-detail" id="projects">
+                <div class="segment-detail-header">
+                    <div class="segment-detail-icon">🏗️</div>
+                    <h3>Projects</h3>
+                </div>
+                <p>Our Projects segment is a turn-key solution company providing a comprehensive range of expertise including engineering advice, design and revamp modeling, as well as professional project management services across various industries.</p>
+                
+                <div class="segment-features">
+                    <div class="feature-item">
+                        <h4>Engineering Advice</h4>
+                        <p>Expert engineering consultation and technical guidance</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Design & Modeling</h4>
+                        <p>Advanced design solutions and 3D modeling services</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Project Management</h4>
+                        <p>End-to-end project management from concept to completion</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Revamp Solutions</h4>
+                        <p>Renovation and upgrade services for existing properties</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">Project Services</a>
+            </div>
+
+            <!-- Development Segment -->
+            <div class="segment-detail" id="development">
+                <div class="segment-detail-header">
+                    <div class="segment-detail-icon">🏘️</div>
+                    <h3>Development</h3>
+                </div>
+                <p>Our Development segment specializes in residential development focusing on medium-cost housing. We create modern, timeless homes perfect for the everyday South African, combining quality construction with affordable pricing.</p>
+                
+                <div class="segment-features">
+                    <div class="feature-item">
+                        <h4>Medium-Cost Housing</h4>
+                        <p>Affordable residential developments for South African families</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Modern Design</h4>
+                        <p>Contemporary, timeless architectural designs</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Quality Construction</h4>
+                        <p>High-quality materials and construction standards</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Community Focus</h4>
+                        <p>Developments designed for community living and growth</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">View Developments</a>
+            </div>
+
+            <!-- Properties Segment -->
+            <div class="segment-detail" id="properties">
+                <div class="segment-detail-header">
+                    <div class="segment-detail-icon">🏢</div>
+                    <h3>Properties</h3>
+                </div>
+                <p>Our Properties segment is the property asset holding entity, acquiring affordable rental homes, revamping them to prime condition, and offering them to the public through our Real Estate division for optimal investment returns.</p>
+                
+                <div class="segment-features">
+                    <div class="feature-item">
+                        <h4>Asset Acquisition</h4>
+                        <p>Strategic acquisition of affordable rental properties</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Property Revamp</h4>
+                        <p>Professional renovation to prime market condition</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Investment Returns</h4>
+                        <p>Optimized properties for maximum investment potential</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Market Integration</h4>
+                        <p>Seamless integration with our Real Estate services</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">Investment Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Explore Property Opportunities?</h2>
+            <p>Whether you're looking to buy, sell, invest, or develop, our comprehensive property services are designed to meet your specific needs and objectives.</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-large">Contact Property Team</a>
+                <a href="index.html#contact" class="btn btn-outline btn-large">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CoalPro Property Division. Comprehensive property solutions for every need.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
