@@ -629,6 +629,107 @@
             font-size: 12px;
             color: #7f8c8d;
         }
+
+        /* Line-by-line order info styles */
+        .order-info-lines {
+            margin: 15px 0;
+        }
+        
+        .info-line {
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-line:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 140px;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .info-value {
+            color: #2d3748;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .order-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #3A3A39;
+        }
+        
+        .payment-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .payment-confirmed {
+            background: #c6f6d5;
+            color: #276749;
+        }
+        
+        .payment-pending {
+            background: #fed7aa;
+            color: #c05621;
+        }
+        
+        .payment-refunded, .payment-failed {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        
+        .rejection-line {
+            background: #fdf2f2;
+            border: 1px solid #e74c3c;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        
+        .rejection-text {
+            color: #721c24;
+            font-style: italic;
+        }
+        
+        /* Remove old grid layout */
+        .order-details {
+            display: none;
+        }
+
+        /* Payment control button styles */
+        .btn-payment {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-payment:hover {
+            background: #edf2f7;
+            transform: translateY(-1px);
+        }
+        
+        .btn-payment.active {
+            background: #3A3A39;
+            color: #F4D03F;
+            border-color: #3A3A39;
+        }
+        
+        .payment-controls {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -1136,38 +1237,64 @@
                 return;
             }
 
-            customerOrdersList.innerHTML = customerOrders.map(order => `
+            customerOrdersList.innerHTML = customerOrders.map(order => {
+                // Calculate order value
+                const pricePerTon = order.pricePerTon || 800;
+                const orderTotal = order.orderTotal || (order.quantity * pricePerTon);
+                const paymentStatus = order.paymentStatus || 'pending';
+                
+                const paymentStatusText = {
+                    'confirmed': '✅ Payment Confirmed',
+                    'pending': '⏳ Payment Pending',
+                    'refunded': '💰 Payment Refunded',
+                    'failed': '❌ Payment Failed'
+                }[paymentStatus] || '❓ Payment Status Unknown';
+                
+                const paymentStatusClass = {
+                    'confirmed': 'payment-confirmed',
+                    'pending': 'payment-pending',
+                    'refunded': 'payment-refunded',
+                    'failed': 'payment-failed'
+                }[paymentStatus] || 'payment-pending';
+                
+                return `
                 <div class="order-item ${order.status}">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
                         <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
                     </div>
                     
-                    <div class="order-details">
-                        <div class="detail-item">
-                            <div class="detail-label">Product</div>
-                            <div class="detail-value">${order.product}</div>
+                    <div class="order-info-lines">
+                        <div class="info-line">
+                            <span class="info-label">📦 Product:</span>
+                            <span class="info-value">${order.product}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Quantity</div>
-                            <div class="detail-value">${order.quantity} tons</div>
+                        <div class="info-line">
+                            <span class="info-label">📏 Quantity:</span>
+                            <span class="info-value">${order.quantity} tons</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Address</div>
-                            <div class="detail-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</div>
+                        <div class="info-line">
+                            <span class="info-label">💰 Order Value:</span>
+                            <span class="info-value order-value">R${orderTotal.toLocaleString()}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Order Date</div>
-                            <div class="detail-value">${new Date(order.date).toLocaleDateString()}</div>
+                        <div class="info-line">
+                            <span class="info-label">💳 Payment Status:</span>
+                            <span class="payment-status ${paymentStatusClass}">${paymentStatusText}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">📍 Address:</span>
+                            <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">📅 Order Date:</span>
+                            <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
+                        </div>
                         ${order.status === 'rejected' && order.rejectionReason ? `
-                            <div class="detail-item" style="grid-column: 1 / -1;">
-                                <div class="rejection-reason">
-                                    <strong>Rejection Reason:</strong> ${order.rejectionReason}
-                                </div>
-                            </div>
-                        ` : ''}
-
+                        <div class="info-line rejection-line">
+                            <span class="info-label">❌ Rejection Reason:</span>
+                            <span class="info-value rejection-text">${order.rejectionReason}</span>
                         </div>
+                        ` : ''}
                     </div>
 
                     <div class="action-buttons">
@@ -1187,12 +1314,43 @@
                         ${order.status === 'delivered' ? `
                             <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
                         ` : ''}
-                        <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
-                            ✏️ Edit Order
-                        </button>
-                        <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
-                            🗑️ Delete
-                        </button>
+                        
+                        <!-- Payment Control Buttons -->
+                        <div class="payment-controls" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
+                            <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                            <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ✅ Confirm
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'pending')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ⏳ Pending
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'refunded')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    💰 Refund
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'failed')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ❌ Failed
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Management Buttons -->
+                        <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
+                                ✏️ Edit Order
+                            </button>
+                            <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
+                                🗑️ Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -1238,54 +1396,76 @@
                 return;
             }
 
-            ordersList.innerHTML = filteredOrders.map(order => `
+            ordersList.innerHTML = filteredOrders.map(order => {
+                // Calculate order value
+                const pricePerTon = order.pricePerTon || 800;
+                const orderTotal = order.orderTotal || (order.quantity * pricePerTon);
+                const paymentStatus = order.paymentStatus || 'pending';
+                
+                const paymentStatusText = {
+                    'confirmed': '✅ Payment Confirmed',
+                    'pending': '⏳ Payment Pending',
+                    'refunded': '💰 Payment Refunded',
+                    'failed': '❌ Payment Failed'
+                }[paymentStatus] || '❓ Payment Status Unknown';
+                
+                const paymentStatusClass = {
+                    'confirmed': 'payment-confirmed',
+                    'pending': 'payment-pending',
+                    'refunded': 'payment-refunded',
+                    'failed': 'payment-failed'
+                }[paymentStatus] || 'payment-pending';
+                
+                return `
                 <div class="order-item ${order.status}">
                     <div class="order-header">
                         <div class="order-id">Order #${order.id}</div>
                         <span class="status ${order.status}">${(order.status || 'pending').replace('_', ' ')}</span>
                     </div>
                     
-                    <div class="order-details">
-                        <div class="detail-item">
-                            <div class="detail-label">Product</div>
-                            <div class="detail-value">${order.product}</div>
+                    <div class="order-info-lines">
+                        <div class="info-line">
+                            <span class="info-label">📦 Product:</span>
+                            <span class="info-value">${order.product}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Quantity</div>
-                            <div class="detail-value">${order.quantity} tons</div>
+                        <div class="info-line">
+                            <span class="info-label">📏 Quantity:</span>
+                            <span class="info-value">${order.quantity} tons</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Customer</div>
-                            <div class="detail-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</div>
+                        <div class="info-line">
+                            <span class="info-label">💰 Order Value:</span>
+                            <span class="info-value order-value">R${orderTotal.toLocaleString()}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Contact</div>
-                            <div class="detail-value">${order.contact}</div>
+                        <div class="info-line">
+                            <span class="info-label">💳 Payment Status:</span>
+                            <span class="payment-status ${paymentStatusClass}">${paymentStatusText}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Email</div>
-                            <div class="detail-value">${order.email}</div>
+                        <div class="info-line">
+                            <span class="info-label">👤 Customer:</span>
+                            <span class="info-value">${order.customerName || order.contact} (${order.customerCompany || order.company})</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Phone</div>
-                            <div class="detail-value">${order.phone}</div>
+                        <div class="info-line">
+                            <span class="info-label">📧 Email:</span>
+                            <span class="info-value">${order.email}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Address</div>
-                            <div class="detail-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</div>
+                        <div class="info-line">
+                            <span class="info-label">📞 Phone:</span>
+                            <span class="info-value">${order.phone}</span>
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Order Date</div>
-                            <div class="detail-value">${new Date(order.date).toLocaleDateString()}</div>
+                        <div class="info-line">
+                            <span class="info-label">📍 Address:</span>
+                            <span class="info-value">${order.streetAddress || 'N/A'}, ${order.city || 'N/A'}, ${order.location} ${order.postalCode || ''}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-label">📅 Order Date:</span>
+                            <span class="info-value">${new Date(order.date).toLocaleDateString()}</span>
+                        </div>
                         ${order.status === 'rejected' && order.rejectionReason ? `
-                            <div class="detail-item" style="grid-column: 1 / -1;">
-                                <div class="rejection-reason">
-                                    <strong>Rejection Reason:</strong> ${order.rejectionReason}
-                                </div>
-                            </div>
-                        ` : ''}
-
+                        <div class="info-line rejection-line">
+                            <span class="info-label">❌ Rejection Reason:</span>
+                            <span class="info-value rejection-text">${order.rejectionReason}</span>
                         </div>
+                        ` : ''}
                     </div>
 
                     <div class="action-buttons">
@@ -1305,12 +1485,43 @@
                         ${order.status === 'delivered' ? `
                             <span style="color: #27ae60; font-weight: bold;">✅ Order Complete</span>
                         ` : ''}
-                        <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
-                            ✏️ Edit Order
-                        </button>
-                        <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
-                            🗑️ Delete
-                        </button>
+                        
+                        <!-- Payment Control Buttons -->
+                        <div class="payment-controls" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
+                            <span style="font-size: 0.85rem; color: #718096; font-weight: 600;">Payment Controls:</span>
+                            <div style="display: flex; gap: 8px; margin-top: 5px; flex-wrap: wrap;">
+                                <button class="btn btn-payment ${paymentStatus === 'confirmed' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'confirmed')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ✅ Confirm
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'pending' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'pending')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ⏳ Pending
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'refunded' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'refunded')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    💰 Refund
+                                </button>
+                                <button class="btn btn-payment ${paymentStatus === 'failed' ? 'active' : ''}" 
+                                        onclick="updatePaymentStatus('${order.id}', 'failed')"
+                                        style="font-size: 0.8rem; padding: 4px 8px;">
+                                    ❌ Failed
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Management Buttons -->
+                        <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn btn-edit" onclick="openEditOrderModal('${order.id}')">
+                                ✏️ Edit Order
+                            </button>
+                            <button class="btn btn-reject" onclick="deleteOrder('${order.id}')">
+                                🗑️ Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
